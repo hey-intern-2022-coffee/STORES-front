@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "gen-api": "node ./scripts/gen-aspida.cjs"
+    "gen-api": "node ./scripts/gen-aspida.cjs",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "dotenv": "^16.0.2",
@@ -20,8 +22,11 @@
   "devDependencies": {
     "@types/qrcode": "^1.5.0",
     "@vitejs/plugin-vue": "^3.1.0",
+    "@vitest/coverage-c8": "^0.23.1",
+    "happy-dom": "^6.0.4",
     "typescript": "^4.6.4",
     "vite": "^3.1.0",
+    "vitest": "^0.23.1",
     "vue-tsc": "^0.40.4"
   }
 }
