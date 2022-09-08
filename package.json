@@ -11,7 +11,9 @@
   "dependencies": {
     "pinia": "^2.0.22",
     "qrcode": "^1.5.1",
-    "vue": "^3.2.37"
+    "vue": "^3.2.37",
+    "vite-plugin-webpackchunkname": "^0.1.1",
+    "vue-router": "4"
   },
   "devDependencies": {
     "@types/qrcode": "^1.5.0",
