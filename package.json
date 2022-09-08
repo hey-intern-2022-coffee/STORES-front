@@ -26,9 +26,15 @@
     "@vitejs/plugin-vue": "^3.1.0",
     "@vitest/coverage-c8": "^0.23.1",
     "happy-dom": "^6.0.4",
+    "husky": "^8.0.1",
     "typescript": "^4.6.4",
     "vite": "^3.1.0",
     "vitest": "^0.23.1",
     "vue-tsc": "^0.40.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "prettier --write . && eslint --fix . && vitest"
+    }
   }
 }
