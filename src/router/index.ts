@@ -12,12 +12,12 @@ const routes: RouteRecordRaw[] = [
     path: "/",
     component: () =>
       import(
-        /* webpackChunkName: "default-layout" */ "@/layout/onlineShopsLayout.vue"
+        /* webpackChunkName: "online-shop" */ "@/layout/onlineShopsLayout.vue"
       ),
     children: [
       {
         path: "",
-        name: "onlineShop",
+        // name: "onlineShop",
         component: () =>
           import(
             /* webpackChunkName: "online-shop" */ "@/pages/onlineShop/index.vue"
@@ -25,7 +25,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: "cart",
-        name: "shoppingCart",
+        name: "shoppingCartView",
         component: () =>
           import(
             /* webpackChunkName: "online-shop" */ "@/pages/onlineShop/shoppingCartView.vue"
@@ -44,7 +44,7 @@ const routes: RouteRecordRaw[] = [
         name: "qrCodeView",
         component: () =>
           import(
-            /* webpackChunkName: "online-shop" */ "@/pages/onlineShop/qrCodeViewView.vue"
+            /* webpackChunkName: "online-shop" */ "@/pages/onlineShop/qrCodeView.vue"
           ),
       },
     ],
@@ -94,7 +94,7 @@ const routes: RouteRecordRaw[] = [
         name: "register",
         component: () =>
           import(
-            /* webpackChunkName: "offline-register" */ "@/pages/stockManager/register/index.vue"
+            /* webpackChunkName: "offline-register" */ "@/pages/register/index.vue"
           ),
       },
       {
@@ -102,7 +102,7 @@ const routes: RouteRecordRaw[] = [
         name: "online-confirm-receipt",
         component: () =>
           import(
-            /* webpackChunkName: "offline-register" */ "@/pages/stockManager/register/online/receiptConfirmationView.vue"
+            /* webpackChunkName: "offline-register" */ "@/pages/register/online/receiptConfirmationView.vue"
           ),
       },
       {
@@ -110,7 +110,7 @@ const routes: RouteRecordRaw[] = [
         name: "online-receipt-done",
         component: () =>
           import(
-            /* webpackChunkName: "offline-register" */ "@/pages/stockManager/register/online/receiptDoneView.vue"
+            /* webpackChunkName: "offline-register" */ "@/pages/register/online/receiptDoneView.vue"
           ),
       },
       {
@@ -118,7 +118,7 @@ const routes: RouteRecordRaw[] = [
         name: "offline-register",
         component: () =>
           import(
-            /* webpackChunkName: "offline-register" */ "@/pages/stockManager/register/offline/posView.vue"
+            /* webpackChunkName: "offline-register" */ "@/pages/register/offline/posView.vue"
           ),
       },
     ],
