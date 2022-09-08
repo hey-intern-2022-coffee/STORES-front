@@ -15,35 +15,37 @@ const GENERATED_DIR = "src/lib";
 const token = process.env.GITHUB_TOKEN;
 const options = {
   headers: {
-    "User-Agent": "hey-intern-2022-b",
+    "User-Agent": "STORES-front",
     Authorization: `token ${token}`,
   },
 };
 
 (async () => {
+  // FIXME: 一旦手作業でコピペすることに。
   // create swagger.yaml
-  try {
-    const res = await fetch(URL, options);
-    const data = await res.json();
+  // try {
+  //   const res = await fetch(URL, options);
+  //   const data = await res.json();
 
-    try {
-      await fs.mkdir(SWAGGER_DIR);
-    } catch (e) {
-      if (e.code !== "EEXIST") console.error(e);
-    }
+  //   try {
+  //     await fs.mkdir(SWAGGER_DIR);
+  //   } catch (e) {
+  //     if (e.code !== "EEXIST") console.error(e);
+  //   }
 
-    await fs.writeFile(
-      SWAGGER_PATH,
-      Buffer.from(data.content, "base64").toString(), // decode
-      "utf-8"
-    );
-  } catch (e) {
-    console.error(e);
-  }
+  //   await fs.writeFile(
+  //     SWAGGER_PATH,
+  //     Buffer.from(data.content, "base64").toString(), // decode
+  //     "utf-8"
+  //   );
+  // } catch (e) {
+  //   console.error(e);
+  // }
 
   // generate api
   try {
-    execSync(`npx openapi2aspida -i=${SWAGGER_PATH} -o=${GENERATED_DIR}`);
+    execSync(`rm -r lib`);
+    execSync(`npx openapi2aspida -i=scripts/bin/swagger.yaml -o=lib`);
   } catch (e) {
     console.error(e);
   }
