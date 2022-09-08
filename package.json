@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gen-api": "node ./scripts/gen-aspida.cjs"
   },
   "dependencies": {
     "pinia": "^2.0.22",
