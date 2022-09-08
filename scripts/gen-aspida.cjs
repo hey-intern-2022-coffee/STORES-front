@@ -44,8 +44,8 @@ const options = {
 
   // generate api
   try {
-    execSync(`rm -r lib`);
-    execSync(`npx openapi2aspida -i=scripts/bin/swagger.yaml -o=lib`);
+    execSync(`rm -r ${GENERATED_DIR}`);
+    execSync(`npx openapi2aspida -i=${SWAGGER_PATH} -o=${GENERATED_DIR}`);
   } catch (e) {
     console.error(e);
   }
