@@ -4,8 +4,9 @@ import QRCode from "qrcode";
 defineProps<{ msg: string }>();
 const count = ref(0);
 const qrcodeSrc = ref("");
-QRCode.toDataURL("1239130129", function (err: any, url: string) {
-  console.log(`<img src="${url}">`);
+const UrlIncludePurchaseid = ref("https://hey-intern-2022.b/?id=019283102938"); // fron BE
+QRCode.toDataURL(UrlIncludePurchaseid.value, function (err: any, url: string) {
+  // console.log(`<img src="${url}">`); // FIXME: delete
   qrcodeSrc.value = url;
 });
 </script>
