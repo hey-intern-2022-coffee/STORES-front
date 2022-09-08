@@ -6,13 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gen-api": "node ./scripts/gen-aspida.cjs"
   },
   "dependencies": {
+    "dotenv": "^16.0.2",
     "pinia": "^2.0.22",
     "qrcode": "^1.5.1",
-    "vue": "^3.2.37",
     "vite-plugin-webpackchunkname": "^0.1.1",
+    "vue": "^3.2.37",
     "vue-router": "4"
   },
   "devDependencies": {
