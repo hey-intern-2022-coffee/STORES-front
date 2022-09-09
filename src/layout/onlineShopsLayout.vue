@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
 const isShowNav = computed(() => ![route.fullPath].includes('/'))
 const goBack = () => router.go(-1)
+
+const goHomePage = () => router.push({ name: 'onlineShop' })
 </script>
 
 <template>
@@ -14,7 +16,7 @@ const goBack = () => router.go(-1)
       <div class="nav">
         <div v-if="isShowNav" @pointerup="goBack" class="go-back">Go back</div>
       </div>
-      <div class="title-content">
+      <div @click="goHomePage" class="title-content">
         <span class="text-large font-600 mr-3"> Title </span>
       </div>
       <div class="credit"></div>

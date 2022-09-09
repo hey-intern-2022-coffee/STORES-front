@@ -17,7 +17,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '',
-        // name: "onlineShop",
+        name: 'onlineShop',
         component: () =>
           import(
             /* webpackChunkName: "online-shop" */ '@/pages/onlineShop/index.vue'
