@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { reactive } from 'vue'
-import { Item } from '../../modules/onlineShop'
+import { Item } from '../../modules/onlineShop/types'
 import { useRouter } from 'vue-router'
 import { useCartStore } from '../../store/cart'
 import { apiClient, healthCheck } from '../../modules/healthCheck'
@@ -17,12 +17,14 @@ const router = useRouter()
 const purchase = async (item: Item) => {
   cartStore.addItem(item)
   // await healthCheck() // FIXME: del
-  router.push('/cart')
+
+  router.push({ name: 'checkoutView' })
 }
 </script>
 <template>
   <div class="root">
     <div id="card-items" v-for="item in items">
+      <!-- TODO: make component -->
       <el-card :body-style="{ padding: '0px', width: '100%' }" class="el-card">
         <div class="card-content">
           <div class="images">
@@ -32,6 +34,7 @@ const purchase = async (item: Item) => {
           </div>
           <div>
             {{ item.title }}
+            &yen;{{ item.price }}
           </div>
           <div class="bottom">
             <el-button text class="button" @pointerup="purchase(item)">{{
