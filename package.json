@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "dotenv": "^16.0.2",
+    "element-plus": "^2.2.16",
     "eslint": "^8.23.0",
     "pinia": "^2.0.22",
     "prettier": "^2.7.1",
