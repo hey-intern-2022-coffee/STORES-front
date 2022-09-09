@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { Item } from '../modules/onlineShop'
 
-export const useCartStore = defineStore('counter', () => {
+export const useCartStore = defineStore('cart', () => {
   const items = ref<Array<Item>>([])
 
   const addItem = (item: Item) => {

@@ -33,7 +33,6 @@ const purchase = (item: Item) => {
 }
 </script>
 <template>
-  <div>online shop index</div>
   <div class="root">
     <div id="card-items" v-for="item in items">
       <el-card :body-style="{ padding: '0px', width: '100%' }" class="el-card">
