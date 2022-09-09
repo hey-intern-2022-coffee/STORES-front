@@ -42,7 +42,9 @@ const { inputs, purchaseItem, allClear, checkout, isShowRequireds } =
           </el-input>
         </template>
         <template v-if="isShowRequireds[inputInfo.name]">
-          <span class="error-message"> 必須項目です。 </span>
+          <span class="error-message">
+            {{ LABELS_ON_CHECKOUT_FORM.orderInfo.warning }}</span
+          >
         </template>
       </div>
     </form>
