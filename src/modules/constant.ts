@@ -1,4 +1,9 @@
-export const INPUTS_FOR_ORDER = [
+import { CheckoutInfoUnion } from './onlineShop/types/checkout'
+export const INPUTS_FOR_ORDER: Array<{
+  name: CheckoutInfoUnion
+  model: string
+  placeholder: string
+}> = [
   {
     name: 'postCode',
     model: '',
@@ -32,3 +37,11 @@ export const LABELS_ON_CHECKOUT_FORM = {
   orderInfo: { title: '注文情報' },
   bottom: { btn: '注文を確定する' }
 }
+
+export const checkoutInfosEnum = {
+  postCode: 'postCode',
+  address: 'address',
+  name: 'name',
+  phoneNumber: 'phoneNumber',
+  email: 'email'
+} as const

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { reactive } from 'vue'
-import { Item } from '../../modules/onlineShop'
+import { Item } from '../../modules/onlineShop/types'
 import { useRouter } from 'vue-router'
 import { useCartStore } from '../../store/cart'
 import { apiClient, healthCheck } from '../../modules/healthCheck'

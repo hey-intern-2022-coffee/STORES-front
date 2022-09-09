@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PropType, ref } from 'vue'
-import { ItemInfoForCheckoutForm } from '../modules/onlineShop/checkout'
+import { ItemInfoForCheckoutForm } from '../modules/onlineShop/types/checkout'
 
 const props = defineProps({
   item: {

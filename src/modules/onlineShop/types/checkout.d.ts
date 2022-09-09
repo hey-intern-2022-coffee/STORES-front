@@ -1,6 +1,4 @@
-export type UserInfoForCheckout = {
-  [x: string]: string
-}[]
+import { checkoutInfosEnum } from '../../constant'
 
 export type ReceiveWays = '現地'
 export type ItemInfoForCheckoutForm = {
@@ -11,3 +9,6 @@ export type ItemInfoForCheckoutForm = {
   shopName: string
   count: number
 }
+
+export type CheckoutInfoUnion =
+  typeof checkoutInfosEnum[keyof typeof checkoutInfosEnum]

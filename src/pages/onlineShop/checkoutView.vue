@@ -1,48 +1,16 @@
 <script setup lang="ts">
-import { computed, ComputedRef, ref } from 'vue'
 import {
-  INPUTS_FOR_ORDER,
+  checkoutInfosEnum,
   LABELS_ON_CHECKOUT_FORM
 } from '../../modules/constant'
-import {
-  ItemInfoForCheckoutForm,
-  UserInfoForCheckout
-} from '../../modules/onlineShop/checkout'
 import { _userInfoForCheckout } from '../../modules/__mock__/onlineShop'
-import { useCartStore } from '../../store/cart'
 import GoodsCardForCheckoutForm from '../../components/GoodsCardForCheckoutForm.vue'
-import { useRouter } from 'vue-router'
+import { useCheckout } from '../../modules/onlineShop/checkout/viewModels/index'
 
-/** 入力情報のみ抽出 */
-const userInfoForCheckout = computed<UserInfoForCheckout>(() =>
-  inputs.value.map(it => ({ [it.name]: it.model }))
-)
-/** inputのplaceholer, name, 入力情報 */
-const inputs = ref(INPUTS_FOR_ORDER)
-
-const cartStore = useCartStore()
-
-/** 注文した商品の情報(現状はアイテム一つのみ) */
-const purchaseItem: ComputedRef<Array<ItemInfoForCheckoutForm>> = computed(
-  () => [
-    {
-      title: cartStore.items[cartStore.items.length - 1]?.title,
-      count: cartStore.items[cartStore.items.length - 1]?.count,
-      price: cartStore.items[cartStore.items.length - 1]?.price,
-      img: cartStore.items[cartStore.items.length - 1]?.img,
-      receive: '現地',
-      shopName: 'amazon.com'
-    }
-  ]
-)
-const allClear = () => inputs.value.forEach(it => (it.model = ''))
-
-const router = useRouter()
-const checkout = () => {
-  // TODO: post
-  router.push({ name: 'qrCodeView' })
-}
+const { inputs, purchaseItem, allClear, checkout, isShowRequireds } =
+  useCheckout()
 </script>
+
 <template>
   <h1>{{ LABELS_ON_CHECKOUT_FORM.title.title }}</h1>
   <div class="form">
@@ -52,7 +20,7 @@ const checkout = () => {
         <label>
           {{ inputInfo.placeholder }}
         </label>
-        <template v-if="inputInfo.name === 'name'">
+        <template v-if="inputInfo.name === checkoutInfosEnum.name">
           <el-input
             class="input"
             v-model="inputInfo.model"
@@ -64,7 +32,17 @@ const checkout = () => {
             class="input"
             v-model="inputInfo.model"
             :placeholder="inputInfo.placeholder"
-          />
+          >
+            <template
+              v-if="inputInfo.name === checkoutInfosEnum.postCode"
+              #prepend
+            >
+              &#12306;</template
+            >
+          </el-input>
+        </template>
+        <template v-if="isShowRequireds[inputInfo.name]">
+          <span class="error-message"> 必須項目です。 </span>
         </template>
       </div>
     </form>
@@ -89,6 +67,7 @@ const checkout = () => {
     </div>
   </div>
 </template>
+
 <style scoped>
 h1 {
   margin-top: 1%;
@@ -142,5 +121,10 @@ h2 {
 }
 .order-info-contents {
   padding: 3%;
+}
+.error-message {
+  color: red;
+  margin-left: auto;
+  font-size: x-small;
 }
 </style>
