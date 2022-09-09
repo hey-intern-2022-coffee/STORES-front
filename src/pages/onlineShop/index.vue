@@ -4,7 +4,7 @@ import { reactive } from 'vue'
 import { Item } from '../../modules/onlineShop'
 import { useRouter } from 'vue-router'
 import { useCartStore } from '../../store/cart'
-import { apiClient } from '../../modules/accessTest'
+import { apiClient, healthCheck } from '../../modules/accessTest'
 const items = reactive<Array<Item>>([
   {
     id: 0,
@@ -28,11 +28,11 @@ const items = reactive<Array<Item>>([
 const buttonTextInItemCard = 'カゴに入れる'
 const cartStore = useCartStore()
 const router = useRouter()
+
 const purchase = async (item: Item) => {
   cartStore.addItem(item)
-  const data = await apiClient.get()
-  console.debug(data)
-  // router.push('/cart')
+  await healthCheck()
+  router.push('/cart')
 }
 </script>
 <template>
