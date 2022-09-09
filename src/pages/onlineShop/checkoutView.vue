@@ -13,6 +13,7 @@ import { useCartStore } from '../../store/cart'
 import GoodsCardForCheckoutForm from '../../components/GoodsCardForCheckoutForm.vue'
 import { useRouter } from 'vue-router'
 
+/** 入力情報のみ抽出 */
 const userInfoForCheckout = computed<UserInfoForCheckout>(() =>
   inputs.value.map(it => ({ [it.name]: it.model }))
 )
