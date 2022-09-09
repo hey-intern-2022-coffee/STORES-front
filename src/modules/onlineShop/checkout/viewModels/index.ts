@@ -49,6 +49,7 @@ export const useCheckout = () => {
 
   const isLoading = ref(false)
   const checkout = async () => {
+    console.debug('checkout')
     isAllowedToCheckout.value = true
     validateForm()
     if (!isAllowedToCheckout.value) return

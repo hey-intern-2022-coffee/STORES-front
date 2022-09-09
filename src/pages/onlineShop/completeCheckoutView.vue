@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { COMPLETE_CHECKOUT_VIEW_TEXT_IN_ONLINE_STORE } from '../../modules/constant.js'
+import { COMPLETE_CHECKOUT_VIEW_TEXT_IN_ONLINE_STORE } from '../../modules/constant'
+import ButtonWithLoading from '../../components/ButtonWithLoading.vue'
+
 const localhostQrUrl = ref('http://192.168.0.113:5173/qr/19283102938')
 const router = useRouter()
 const isLoading = ref(false)
@@ -19,27 +21,12 @@ const toLocalhostQrUrl = () => {
       {{ COMPLETE_CHECKOUT_VIEW_TEXT_IN_ONLINE_STORE.annotation.top }}
     </div>
     <div>
-      <el-button type="primary" :loading="isLoading" @click="toLocalhostQrUrl">
-        <template #loading>
-          <div class="custom-loading">
-            <svg class="circular" viewBox="-10, -10, 50, 50">
-              <path
-                class="path"
-                d="
-            M 30 15
-            L 28 17
-            M 25.61 25.61
-            A 15 15, 0, 0, 1, 15 30
-            A 15 15, 0, 1, 1, 27.99 7.5
-            L 15 15
-          "
-                style="stroke-width: 4px; fill: rgba(0, 0, 0, 0)"
-              />
-            </svg>
-          </div>
-        </template>
-        QRコードはこちら
-      </el-button>
+      <ButtonWithLoading
+        :text="'QRコードはこちら'"
+        :click-method="toLocalhostQrUrl"
+        :custom-style="'width: 50vw;height: auto;'"
+        :is-loading="isLoading"
+      />
     </div>
     <div class="annotation-bottom">
       {{ COMPLETE_CHECKOUT_VIEW_TEXT_IN_ONLINE_STORE.annotation.bottom }}

@@ -63,3 +63,7 @@ export const COMPLETE_CHECKOUT_VIEW_TEXT_IN_ONLINE_STORE = {
       'URLはメールにも送信しておりますのでそちらも合わせてご確認ください。'
   }
 }
+
+export const SAVE_QR_CODE = 'QRコードを保存する'
+export const INVALID_PURCHASE_ID =
+  '購入IDが正しくありません。\nメールを再度ご確認の上、もう一度アクセスしてください。'
