@@ -33,6 +33,7 @@ const purchase = async (item: Item) => {
           </div>
           <div>
             {{ item.title }}
+            &yen;{{ item.price }}
           </div>
           <div class="bottom">
             <el-button text class="button" @pointerup="purchase(item)">{{

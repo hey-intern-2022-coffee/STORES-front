@@ -1,1 +1,7 @@
-export type Item = { id: number; title: string; img: string; count: number }
+export type Item = {
+  id: number
+  title: string
+  price: number
+  img: string
+  count: number
+}
