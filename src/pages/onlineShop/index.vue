@@ -4,34 +4,19 @@ import { reactive } from 'vue'
 import { Item } from '../../modules/onlineShop'
 import { useRouter } from 'vue-router'
 import { useCartStore } from '../../store/cart'
-import { apiClient, healthCheck } from '../../modules/accessTest'
-const items = reactive<Array<Item>>([
-  {
-    id: 0,
-    title: '商品名1',
-    img: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
-    count: 1
-  },
-  {
-    id: 1,
-    title: '商品名2',
-    img: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
-    count: 1
-  },
-  {
-    id: 2,
-    title: '商品名3',
-    img: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
-    count: 1
-  }
-])
+import { apiClient, healthCheck } from '../../modules/healthCheck'
+import { _onlineShopItems } from '../../modules/__mock__/onlineShop'
+
+const items = reactive<Array<Item>>(_onlineShopItems)
+
+// FIXME: constantファイルに移動
 const buttonTextInItemCard = 'カゴに入れる'
 const cartStore = useCartStore()
 const router = useRouter()
 
 const purchase = async (item: Item) => {
   cartStore.addItem(item)
-  await healthCheck()
+  // await healthCheck() // FIXME: del
   router.push('/cart')
 }
 </script>
