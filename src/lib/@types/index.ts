@@ -25,3 +25,20 @@ export type Purchase = UserInfo & {
   /** 受け取ったかどうか */
   is_acceptance?: boolean | undefined
 }
+
+/** 登録された商品 */
+export type Products = OnlineStock & {
+  /** 商品のID */
+  id?: number | undefined
+  /** 商品の名前 */
+  name?: string | undefined
+  /** 商品の値段 */
+  price?: number | undefined
+  /** 商品画像 */
+  image_url?: string | undefined
+}
+
+/** オンライン上の商品の在庫 */
+export type OnlineStock = {
+  stock_quantity?: number | undefined
+}

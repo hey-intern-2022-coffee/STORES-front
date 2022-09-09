@@ -11,18 +11,18 @@ paths:
           application/json:
             schema:
               # "$ref": "#/components/schemas/Purchase"
-              "$ref": "#/components/schemas/UserInfo"
+              '$ref': '#/components/schemas/UserInfo'
         required: true
       responses:
-        "201":
+        '201':
           description: Created Content
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/Purchase"
-        "400":
+                '$ref': '#/components/schemas/Purchase'
+        '400':
           description: Bad request
-        "500":
+        '500':
           description: Internal server error
     patch:
       summary: 購入IDに紐づいた商品の在庫を1減らす
@@ -33,15 +33,15 @@ paths:
               type: integer
               format: int64
       responses:
-        "200":
+        '200':
           description: successful
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/Purchase"
-        "400":
+                '$ref': '#/components/schemas/Products'
+        '400':
           description: Bad request
-        "500":
+        '500':
           description: Internal server error
 
   /purchase/{purchases_id}:
@@ -55,12 +55,63 @@ paths:
             type: integer
             format: int64
       responses:
-        "200":
+        '200':
           description: successful purchases
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/Purchase"
+                '$ref': '#/components/schemas/Purchase'
+  /products:
+    post:
+      summary: 商品を登録する
+      requestBody:
+        content:
+          application/json:
+            schema:
+              '$ref': '#/components/schemas/Products'
+      responses:
+        '201':
+          description: created products
+          content:
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/Products'
+    get:
+      summary: 商品の一覧取得する
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  '$ref': '#/components/schemas/Products'
+  /onlinestore/allproducts:
+    get:
+      summary: オンラインショップ側の商品一覧を取得する
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  '$ref': '#/components/schemas/Products'
+  /:
+    get:
+      summary: ヘルスチェック
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
 
 components:
   parameters:
@@ -97,7 +148,7 @@ components:
       type: object
       description: 購入する
       allOf:
-        - "$ref": "#/components/schemas/UserInfo"
+        - '$ref': '#/components/schemas/UserInfo'
         - properties:
             id:
               type: integer
@@ -106,6 +157,30 @@ components:
               type: boolean
               default: false
               description: 受け取ったかどうか
+    Products:
+      type: object
+      description: 登録された商品
+      allOf:
+        - '$ref': '#/components/schemas/OnlineStock'
+        - properties:
+            id:
+              type: integer
+              description: 商品のID
+            name:
+              type: string
+              description: 商品の名前
+            price:
+              type: integer
+              description: 商品の値段
+            image_url:
+              type: string
+              description: 商品画像
+    OnlineStock:
+      type: object
+      description: オンライン上の商品の在庫
+      properties:
+        stock_quantity:
+          type: integer
       required:
         - name
         - address

@@ -13,6 +13,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@aspida/axios": "^1.11.0",
+    "axios": "^0.27.2",
     "dotenv": "^16.0.2",
     "element-plus": "^2.2.16",
     "eslint": "^8.23.0",
