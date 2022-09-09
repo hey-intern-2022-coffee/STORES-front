@@ -7,7 +7,7 @@ import { _userInfoForCheckout } from '../../modules/__mock__/onlineShop'
 import GoodsCardForCheckoutForm from '../../components/GoodsCardForCheckoutForm.vue'
 import { useCheckout } from '../../modules/onlineShop/checkout/viewModels/index'
 
-const { inputs, purchaseItem, allClear, checkout, isShowRequireds } =
+const { inputs, purchaseItem, allClear, checkout, isShowRequireds, isLoading } =
   useCheckout()
 </script>
 
@@ -62,7 +62,30 @@ const { inputs, purchaseItem, allClear, checkout, isShowRequireds } =
         <GoodsCardForCheckoutForm :item="purchaseItem[0]" />
       </div>
       <div class="btn">
-        <el-button @click="checkout" type="primary" class="el-button">
+        <el-button
+          type="primary"
+          :loading="isLoading"
+          @click="checkout"
+          class="el-button"
+        >
+          <template #loading>
+            <div class="custom-loading">
+              <svg class="circular" viewBox="-10, -10, 50, 50">
+                <path
+                  class="path"
+                  d="
+            M 30 15
+            L 28 17
+            M 25.61 25.61
+            A 15 15, 0, 0, 1, 15 30
+            A 15 15, 0, 1, 1, 27.99 7.5
+            L 15 15
+          "
+                  style="stroke-width: 4px; fill: rgba(0, 0, 0, 0)"
+                />
+              </svg>
+            </div>
+          </template>
           {{ LABELS_ON_CHECKOUT_FORM.bottom.btn }}
         </el-button>
       </div>
@@ -128,5 +151,20 @@ h2 {
   color: red;
   margin-left: auto;
   font-size: x-small;
+}
+
+.el-button .custom-loading .circular {
+  margin-right: 6px;
+  width: 18px;
+  height: 18px;
+  animation: loading-rotate 2s linear infinite;
+}
+.el-button .custom-loading .circular .path {
+  animation: loading-dash 1.5s ease-in-out infinite;
+  stroke-dasharray: 90, 150;
+  stroke-dashoffset: 0;
+  stroke-width: 2;
+  stroke: var(--el-button-text-color);
+  stroke-linecap: round;
 }
 </style>

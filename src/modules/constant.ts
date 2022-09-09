@@ -1,4 +1,6 @@
 import { CheckoutInfoUnion } from './onlineShop/types/checkout'
+export const APP_NAME = 'STORES'
+
 export const INPUTS_FOR_ORDER: Array<{
   name: CheckoutInfoUnion
   model: string
@@ -56,7 +58,7 @@ export const QR_CODE_VIEW_TEXT_IN_ONLINE_STORE = {
 export const COMPLETE_CHECKOUT_VIEW_TEXT_IN_ONLINE_STORE = {
   thanks: 'お買い上げありがとうございます。',
   annotation: {
-    top: '商品受け取りの際に下記のURLで表示されるQRコードをご提示ください。',
+    top: '商品受け取りの際に下記から表示されるQRコードをご提示ください。',
     bottom:
       'URLはメールにも送信しておりますのでそちらも合わせてご確認ください。'
   }

@@ -12,11 +12,19 @@ const receiveUrl = ref(
 </script>
 <template>
   <div class="qr-page">
-    <h1>{{ QR_CODE_VIEW_TEXT_IN_ONLINE_STORE.annotation.top }}</h1>
-    <div class="qr-code">
-      <QR :url="receiveUrl" />
-    </div>
-    <div>{{ QR_CODE_VIEW_TEXT_IN_ONLINE_STORE.annotation.bottom }}</div>
+    <template v-if="!!purchaseId">
+      <h1>{{ QR_CODE_VIEW_TEXT_IN_ONLINE_STORE.annotation.top }}</h1>
+      <div class="qr-code">
+        <QR :url="receiveUrl" />
+      </div>
+      <div>{{ QR_CODE_VIEW_TEXT_IN_ONLINE_STORE.annotation.bottom }}</div>
+    </template>
+    <template v-else>
+      <div>
+        購入IDが正しくありません。
+        メールを再度ご確認の上、もう一度アクセスしてください。
+      </div>
+    </template>
   </div>
 </template>
 <style scoped>

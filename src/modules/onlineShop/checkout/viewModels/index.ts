@@ -47,10 +47,12 @@ export const useCheckout = () => {
     })
   }
 
+  const isLoading = ref(false)
   const checkout = async () => {
     isAllowedToCheckout.value = true
     validateForm()
     if (!isAllowedToCheckout.value) return
+    isLoading.value = true
 
     // TODO: post request
     // router.push({ name: 'qrCodeView' })
@@ -62,6 +64,7 @@ export const useCheckout = () => {
     purchaseItem,
     allClear,
     checkout,
-    isShowRequireds
+    isShowRequireds,
+    isLoading
   }
 }
