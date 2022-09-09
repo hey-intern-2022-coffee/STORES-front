@@ -18,3 +18,10 @@ export const _onlineShopItems = [
     count: 1
   }
 ]
+export const _userInfoForCheckout = {
+  postCode: '',
+  address: '',
+  name: '',
+  phoneNumber: '',
+  email: ''
+}

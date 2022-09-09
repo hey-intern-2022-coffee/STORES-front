@@ -17,7 +17,8 @@ const router = useRouter()
 const purchase = async (item: Item) => {
   cartStore.addItem(item)
   // await healthCheck() // FIXME: del
-  router.push('/cart')
+  // router.push('/cart')
+  router.push('/checkout')
 }
 </script>
 <template>
