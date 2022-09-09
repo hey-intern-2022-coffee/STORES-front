@@ -27,6 +27,8 @@ export const INPUTS_FOR_ORDER = [
 ]
 
 export const LABELS_ON_CHECKOUT_FORM = {
+  title: { title: '注文情報の入力' },
   addressForm: { title: 'お届け先', clearBtn: '全て消す' },
-  orderInfo: { title: '注文情報' }
+  orderInfo: { title: '注文情報' },
+  bottom: { btn: '注文を確定する' }
 }

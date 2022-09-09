@@ -17,13 +17,14 @@ const router = useRouter()
 const purchase = async (item: Item) => {
   cartStore.addItem(item)
   // await healthCheck() // FIXME: del
-  // router.push('/cart')
-  router.push('/checkout')
+
+  router.push({ name: 'checkoutView' })
 }
 </script>
 <template>
   <div class="root">
     <div id="card-items" v-for="item in items">
+      <!-- TODO: make component -->
       <el-card :body-style="{ padding: '0px', width: '100%' }" class="el-card">
         <div class="card-content">
           <div class="images">

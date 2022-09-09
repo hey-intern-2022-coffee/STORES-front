@@ -1,139 +1,139 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
   {
-    path: "/authentication",
+    path: '/authentication',
     component: () =>
       import(
-        /* webpackChunkName: "authentication" */ "@/pages/authentication.vue"
-      ),
+        /* webpackChunkName: "authentication" */ '@/pages/authentication.vue'
+      )
   },
   {
-    path: "/",
+    path: '/',
     component: () =>
       import(
-        /* webpackChunkName: "online-shop" */ "@/layout/onlineShopsLayout.vue"
+        /* webpackChunkName: "online-shop" */ '@/layout/onlineShopsLayout.vue'
       ),
     children: [
       {
-        path: "",
+        path: '',
         // name: "onlineShop",
         component: () =>
           import(
-            /* webpackChunkName: "online-shop" */ "@/pages/onlineShop/index.vue"
-          ),
+            /* webpackChunkName: "online-shop" */ '@/pages/onlineShop/index.vue'
+          )
       },
       {
-        path: "cart",
-        name: "shoppingCartView",
+        path: 'cart',
+        name: 'shoppingCartView',
         component: () =>
           import(
-            /* webpackChunkName: "online-shop" */ "@/pages/onlineShop/shoppingCartView.vue"
-          ),
+            /* webpackChunkName: "online-shop" */ '@/pages/onlineShop/shoppingCartView.vue'
+          )
       },
       {
-        path: "checkout",
-        name: "checkout",
+        path: 'checkout',
+        name: 'checkoutView',
         component: () =>
           import(
-            /* webpackChunkName: "online-shop" */ "@/pages/onlineShop/checkoutView.vue"
-          ),
+            /* webpackChunkName: "online-shop" */ '@/pages/onlineShop/checkoutView.vue'
+          )
       },
       {
-        path: "qr",
-        name: "qrCodeView",
+        path: 'qr',
+        name: 'qrCodeView',
         component: () =>
           import(
-            /* webpackChunkName: "online-shop" */ "@/pages/onlineShop/qrCodeView.vue"
-          ),
-      },
-    ],
+            /* webpackChunkName: "online-shop" */ '@/pages/onlineShop/qrCodeView.vue'
+          )
+      }
+    ]
   },
   {
-    path: "/stock-manager",
+    path: '/stock-manager',
     component: () =>
       import(
-        /* webpackChunkName: "stock-manager" */ "@/layout/stockManagerLayout.vue"
+        /* webpackChunkName: "stock-manager" */ '@/layout/stockManagerLayout.vue'
       ),
     children: [
       {
-        path: "",
-        name: "online-offline",
+        path: '',
+        name: 'online-offline',
         component: () =>
           import(
-            /* webpackChunkName: "stock-manager" */ "@/pages/stockManager/index.vue"
-          ),
+            /* webpackChunkName: "stock-manager" */ '@/pages/stockManager/index.vue'
+          )
       },
       {
-        path: "online",
-        name: "online",
+        path: 'online',
+        name: 'online',
         component: () =>
           import(
-            /* webpackChunkName: "stock-manager" */ "@/pages/stockManager/online/index.vue"
-          ),
+            /* webpackChunkName: "stock-manager" */ '@/pages/stockManager/online/index.vue'
+          )
       },
       {
-        path: "offline",
-        name: "offline",
+        path: 'offline',
+        name: 'offline',
         component: () =>
           import(
-            /* webpackChunkName: "stock-manager" */ "@/pages/stockManager/offline/index.vue"
-          ),
-      },
-    ],
+            /* webpackChunkName: "stock-manager" */ '@/pages/stockManager/offline/index.vue'
+          )
+      }
+    ]
   },
   {
-    path: "/register",
+    path: '/register',
     component: () =>
       import(
-        /* webpackChunkName: "offline-register" */ "@/layout/registerLayout.vue"
+        /* webpackChunkName: "offline-register" */ '@/layout/registerLayout.vue'
       ),
     children: [
       {
-        path: "",
-        name: "register",
+        path: '',
+        name: 'register',
         component: () =>
           import(
-            /* webpackChunkName: "offline-register" */ "@/pages/register/index.vue"
-          ),
+            /* webpackChunkName: "offline-register" */ '@/pages/register/index.vue'
+          )
       },
       {
-        path: "online/confirmation",
-        name: "online-confirm-receipt",
+        path: 'online/confirmation',
+        name: 'online-confirm-receipt',
         component: () =>
           import(
-            /* webpackChunkName: "offline-register" */ "@/pages/register/online/receiptConfirmationView.vue"
-          ),
+            /* webpackChunkName: "offline-register" */ '@/pages/register/online/receiptConfirmationView.vue'
+          )
       },
       {
-        path: "online/done",
-        name: "online-receipt-done",
+        path: 'online/done',
+        name: 'online-receipt-done',
         component: () =>
           import(
-            /* webpackChunkName: "offline-register" */ "@/pages/register/online/receiptDoneView.vue"
-          ),
+            /* webpackChunkName: "offline-register" */ '@/pages/register/online/receiptDoneView.vue'
+          )
       },
       {
-        path: "offline",
-        name: "offline-register",
+        path: 'offline',
+        name: 'offline-register',
         component: () =>
           import(
-            /* webpackChunkName: "offline-register" */ "@/pages/register/offline/posView.vue"
-          ),
-      },
-    ],
+            /* webpackChunkName: "offline-register" */ '@/pages/register/offline/posView.vue'
+          )
+      }
+    ]
   },
   {
-    path: "/:pathMatch(.*)*",
-    name: "NotFoundError",
+    path: '/:pathMatch(.*)*',
+    name: 'NotFoundError',
     component: () =>
-      import(/* webpackChunkName: "not-found" */ "@/pages/NotFound.vue"),
-  },
-];
+      import(/* webpackChunkName: "not-found" */ '@/pages/NotFound.vue')
+  }
+]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
-});
+  routes
+})
 
-export default router;
+export default router
