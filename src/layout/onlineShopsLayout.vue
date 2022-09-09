@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
-const isShowNav = ![route.fullPath].includes('/')
+const isShowNav = computed(()=>![route.fullPath].includes('/'))
 const goBack = () => router.go(-1)
 </script>
 

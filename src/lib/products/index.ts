@@ -4,15 +4,14 @@ import type * as Types from '../@types'
 export type Methods = {
   post: {
     status: 201
-    /** Created Content */
-    resBody: Types.Purchase
-    reqBody: Types.UserInfo
+    /** created products */
+    resBody: Types.Products
+    reqBody: Types.Products
   }
 
-  patch: {
+  get: {
     status: 200
     /** successful */
-    resBody: Types.Products
-    reqBody: number
+    resBody: Types.Products[]
   }
 }

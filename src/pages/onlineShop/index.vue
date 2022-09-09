@@ -1,24 +1,36 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { reactive } from 'vue'
-
-const items = reactive([
+import { Item } from '../../modules/onlineShop'
+import { useRouter } from 'vue-router'
+import { useCartStore } from '../../store/cart'
+const items = reactive<Array<Item>>([
   {
     id: 0,
     title: '商品名1',
-    img: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png'
+    img: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+    count: 1
   },
   {
     id: 1,
     title: '商品名2',
-    img: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png'
+    img: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+    count: 1
   },
   {
     id: 2,
     title: '商品名3',
-    img: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png'
+    img: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+    count: 1
   }
 ])
 const buttonTextInItemCard = 'カゴに入れる'
+const cartStore = useCartStore()
+const router = useRouter()
+const purchase = (item: Item) => {
+  cartStore.addItem(item)
+  router.push('/cart')
+}
 </script>
 <template>
   <div>online shop index</div>
@@ -35,7 +47,7 @@ const buttonTextInItemCard = 'カゴに入れる'
             {{ item.title }}
           </div>
           <div class="bottom">
-            <el-button text class="button">{{
+            <el-button text class="button" @pointerup="purchase(item)">{{
               buttonTextInItemCard
             }}</el-button>
           </div>
@@ -61,10 +73,12 @@ const buttonTextInItemCard = 'カゴに入れる'
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
 }
 .images {
   margin-right: 1rem;
   width: 38%;
+  height: auto;
 }
 .images img {
   height: 100%;
