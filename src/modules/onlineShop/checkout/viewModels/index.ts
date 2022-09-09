@@ -53,7 +53,8 @@ export const useCheckout = () => {
     if (!isAllowedToCheckout.value) return
 
     // TODO: post request
-    router.push({ name: 'qrCodeView' })
+    // router.push({ name: 'qrCodeView' })
+    router.push({ name: 'completeCheckoutView' })
   }
 
   return {

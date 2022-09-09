@@ -45,3 +45,19 @@ export const checkoutInfosEnum = {
   phoneNumber: 'phoneNumber',
   email: 'email'
 } as const
+
+export const QR_CODE_VIEW_TEXT_IN_ONLINE_STORE = {
+  annotation: {
+    top: '商品受け取りの際に下記のQRコードをご提示ください。',
+    bottom:
+      '本ページのURLはメールにも送信しておりますのでそちらも合わせてご確認ください。'
+  }
+}
+export const COMPLETE_CHECKOUT_VIEW_TEXT_IN_ONLINE_STORE = {
+  thanks: 'お買い上げありがとうございます。',
+  annotation: {
+    top: '商品受け取りの際に下記のURLで表示されるQRコードをご提示ください。',
+    bottom:
+      'URLはメールにも送信しておりますのでそちらも合わせてご確認ください。'
+  }
+}

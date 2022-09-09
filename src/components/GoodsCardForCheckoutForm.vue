@@ -11,7 +11,6 @@ const props = defineProps({
 </script>
 
 <template>
-  <!-- <div>{{ item }}</div> -->
   <div>
     <el-card :body-style="{ padding: '0px', width: '100%' }" class="el-card">
       <div class="card-content">

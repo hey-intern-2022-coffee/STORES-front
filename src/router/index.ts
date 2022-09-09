@@ -40,6 +40,14 @@ const routes: RouteRecordRaw[] = [
           )
       },
       {
+        path: 'completeCheckout',
+        name: 'completeCheckoutView',
+        component: () =>
+          import(
+            /* webpackChunkName: "online-shop" */ '@/pages/onlineShop/completeCheckoutView.vue'
+          )
+      },
+      {
         path: 'qr',
         name: 'qrCodeView',
         component: () =>
