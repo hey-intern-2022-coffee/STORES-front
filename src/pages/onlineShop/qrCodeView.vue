@@ -5,9 +5,10 @@ import QR from '../../components/QR.vue'
 import { QR_CODE_VIEW_TEXT_IN_ONLINE_STORE } from '../../modules/constant'
 
 const route = useRoute()
-const purchaseId = computed(() => route.query.id)
+const purchaseId = computed(() => route.params.purchaseId)
+
 const receiveUrl = ref(
-  `http://192.168.0.113:5173/register/online/confirmation?id=${purchaseId.value}`
+  `http://192.168.0.113:5173/register/online/confirmation/${purchaseId.value}`
 )
 </script>
 <template>
