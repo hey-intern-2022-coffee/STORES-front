@@ -40,12 +40,21 @@ const routes: RouteRecordRaw[] = [
           )
       },
       {
-        path: 'qr',
+        path: 'completeCheckout',
+        name: 'completeCheckoutView',
+        component: () =>
+          import(
+            /* webpackChunkName: "online-shop" */ '@/pages/onlineShop/completeCheckoutView.vue'
+          )
+      },
+      {
+        path: '/qr/:purchaseId',
         name: 'qrCodeView',
         component: () =>
           import(
             /* webpackChunkName: "online-shop" */ '@/pages/onlineShop/qrCodeView.vue'
-          )
+          ),
+        props: route => ({ purchaseId: Number(route.params.id) })
       }
     ]
   },
@@ -98,12 +107,14 @@ const routes: RouteRecordRaw[] = [
           )
       },
       {
-        path: 'online/confirmation',
+        // path: 'online/confirmation',
+        path: 'online/confirmation/:purchaseId',
         name: 'online-confirm-receipt',
         component: () =>
           import(
             /* webpackChunkName: "offline-register" */ '@/pages/register/online/receiptConfirmationView.vue'
-          )
+          ),
+        props: route => ({ purchaseId: Number(route.params.id) })
       },
       {
         path: 'online/done',

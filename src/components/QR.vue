@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import QRCode from "qrcode";
+import { ref } from 'vue'
+import QRCode from 'qrcode'
 
 const props = defineProps<{
-  url: { type: string; default: "https://hey-intern-2022.b/?id=019283102938" };
-}>();
-const qrcodeSrc = ref("");
+  url: String
+}>()
+const qrcodeSrc = ref('')
 QRCode.toDataURL(props.url, function (err: any, url: string) {
-  qrcodeSrc.value = url;
-});
+  qrcodeSrc.value = url
+})
 </script>
 
 <template>

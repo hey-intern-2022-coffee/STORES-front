@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { APP_NAME } from '../modules/constant'
 
 const router = useRouter()
 const route = useRoute()
@@ -14,10 +15,13 @@ const goHomePage = () => router.push({ name: 'onlineShop' })
   <div>
     <div class="header">
       <div class="nav">
-        <div v-if="isShowNav" @pointerup="goBack" class="go-back">Go back</div>
+        <template v-if="isShowNav">
+          <span> &lt; </span>
+          <span @pointerup="goBack" class="go-back">戻る</span>
+        </template>
       </div>
       <div @click="goHomePage" class="title-content">
-        <span class="text-large font-600 mr-3"> Title </span>
+        <span class="text-large font-600 mr-3"> {{ APP_NAME }} </span>
       </div>
       <div class="credit"></div>
     </div>
@@ -31,6 +35,8 @@ const goHomePage = () => router.push({ name: 'onlineShop' })
   justify-content: space-between;
   align-items: center;
   height: 5vh;
+  padding-left: 3%;
+  padding-right: 3%;
 }
 .content {
   display: flex;
