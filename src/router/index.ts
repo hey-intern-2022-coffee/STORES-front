@@ -107,6 +107,14 @@ const routes: RouteRecordRaw[] = [
           )
       },
       {
+        path: 'online/qr-reader',
+        name: 'online-receipt-qr-reader',
+        component: () =>
+          import(
+            /* webpackChunkName: "offline-register" */ '@/pages/register/online/qrReaderView.vue'
+          )
+      },
+      {
         // path: 'online/confirmation',
         path: 'online/confirmation/:purchaseId',
         name: 'online-confirm-receipt',

@@ -3,11 +3,11 @@ import { ref } from 'vue'
 import QRCode from 'qrcode'
 
 const props = defineProps<{
-  url: String
+  src: String
 }>()
 const qrcodeSrc = ref('')
-QRCode.toDataURL(props.url, function (err: any, url: string) {
-  qrcodeSrc.value = url
+QRCode.toDataURL(props.src, function (err: any, src: string) {
+  qrcodeSrc.value = src
 })
 </script>
 

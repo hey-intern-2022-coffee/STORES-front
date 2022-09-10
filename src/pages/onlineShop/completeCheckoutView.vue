@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router'
 import { COMPLETE_CHECKOUT_VIEW_TEXT_IN_ONLINE_STORE } from '../../modules/constant'
 import ButtonWithLoading from '../../components/ButtonWithLoading.vue'
 
-const localhostQrUrl = ref('http://192.168.0.113:5173/qr/19283102938')
+const localhostQrUrl = ref(`${import.meta.env.VITE_BASE_URL}/qr/19283102938`)
 const router = useRouter()
 const isLoading = ref(false)
 const toLocalhostQrUrl = () => {

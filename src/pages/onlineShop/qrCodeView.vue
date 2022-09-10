@@ -12,9 +12,6 @@ import { htmlToCanvas } from '../../modules/utils/htmlToCanvas'
 const route = useRoute()
 const purchaseId = computed(() => Number(route.params.purchaseId))
 
-const receiveUrl = ref(
-  `http://192.168.0.113:5173/register/online/confirmation/${purchaseId.value}`
-)
 const qrInfo = ref<HTMLElement>()
 
 const saveImage = () => {
@@ -28,7 +25,7 @@ const saveImage = () => {
         <h1>{{ QR_CODE_VIEW_TEXT_IN_ONLINE_STORE.annotation.top }}</h1>
         <div class="text-in-image"></div>
         <div class="qr-code">
-          <QR :url="receiveUrl" />
+          <QR :src="`${purchaseId}`" />
         </div>
         <div class="id">id: {{ purchaseId }}</div>
       </span>
