@@ -1,12 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { COMPLETE_CHECKOUT_VIEW_TEXT_IN_ONLINE_STORE } from '../../modules/constant'
 import ButtonWithLoading from '../../components/ButtonWithLoading.vue'
+import { usePurchaseStore } from '../../store'
 
 // const localhostQrUrl = ref(`${import.meta.env.VITE_BASE_URL}/qr/19283102938`)
+const store = usePurchaseStore()
+
+const purchaseId = computed<number | null>(() => store.purchaseId)
 const localhostQrUrl = ref(
-  `${window.location.href.replace('/completeCheckout', '')}/qr/19283102938`
+  `${window.location.href.replace('/completeCheckout', '')}/qr/${
+    purchaseId.value
+  }`
 )
 const router = useRouter()
 const isLoading = ref(false)

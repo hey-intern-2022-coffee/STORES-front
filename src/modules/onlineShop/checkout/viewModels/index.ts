@@ -4,7 +4,7 @@ import { useCartStore } from '../../../../store/cart'
 import { checkoutInfosEnum, INPUTS_FOR_ORDER } from '../../../constant'
 import { validators } from '../models'
 import { ItemInfoForCheckoutForm } from '../../types/checkout'
-import { useFetch } from '../../../utils/api'
+import { useFetch } from '../../../utils/api.ts'
 import { apiClient } from '../../../../repos'
 import { UserInfo } from '../../../../lib/@types'
 import { usePurchaseStore } from '../../../../store'
@@ -53,7 +53,6 @@ export const useCheckout = () => {
 
   const isLoading = ref(false)
   const checkout = async () => {
-    console.debug('checkout')
     isAllowedToCheckout.value = true
     validateForm()
     if (!isAllowedToCheckout.value) return
@@ -76,6 +75,7 @@ export const useCheckout = () => {
     })
     // FIXME: purchaseIdをstoreに登録(現状: レスポンスが返ってきていない, BE待ち.)
     const store = usePurchaseStore()
+    console.debug(purchaseInfo)
     if (purchaseInfo.id) store.setPurchaseId(purchaseInfo.id)
 
     // TODO: post request

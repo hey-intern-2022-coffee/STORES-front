@@ -1,9 +1,16 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
 
-export const usePurchaseStore = defineStore('purchase', () => {
-  const purchaseId = ref(0)
-  const setPurchaseId = (arg: number) => (purchaseId.value = arg)
-
-  return { purchaseId, setPurchaseId }
+export const usePurchaseStore = defineStore('purchase', {
+  state: () => ({ purchaseId: 0 }),
+  getters: {
+    getPurchaseId: state => state.purchaseId
+  },
+  actions: {
+    setPurchaseId(arg: number) {
+      this.purchaseId = arg
+    }
+  },
+  persist: {
+    enabled: true
+  }
 })
