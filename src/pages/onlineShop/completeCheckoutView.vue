@@ -4,7 +4,10 @@ import { useRouter } from 'vue-router'
 import { COMPLETE_CHECKOUT_VIEW_TEXT_IN_ONLINE_STORE } from '../../modules/constant'
 import ButtonWithLoading from '../../components/ButtonWithLoading.vue'
 
-const localhostQrUrl = ref(`${import.meta.env.VITE_BASE_URL}/qr/19283102938`)
+// const localhostQrUrl = ref(`${import.meta.env.VITE_BASE_URL}/qr/19283102938`)
+const localhostQrUrl = ref(
+  `${window.location.href.replace('/completeCheckout', '')}/qr/19283102938`
+)
 const router = useRouter()
 const isLoading = ref(false)
 const toLocalhostQrUrl = () => {
