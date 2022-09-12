@@ -7,7 +7,7 @@ export const INPUTS_FOR_ORDER: Array<{
   placeholder: string
 }> = [
   {
-    name: 'postCode',
+    name: 'zipCode',
     model: '',
     placeholder: 'ハイフン(-)なし　郵便番号'
   },
@@ -41,7 +41,7 @@ export const LABELS_ON_CHECKOUT_FORM = {
 }
 
 export const checkoutInfosEnum = {
-  postCode: 'postCode',
+  zipCode: 'zipCode',
   address: 'address',
   name: 'name',
   phoneNumber: 'phoneNumber',

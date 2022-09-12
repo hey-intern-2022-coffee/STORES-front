@@ -22,7 +22,7 @@ export const _onlineShopItems = [
   }
 ]
 export const _userInfoForCheckout = {
-  postCode: '',
+  zipCode: '',
   address: '',
   name: '',
   phoneNumber: '',

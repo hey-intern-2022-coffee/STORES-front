@@ -7,7 +7,7 @@ export const validatorForPhoneNumber = (arg: string) => !!arg.length
 export const validatorForEmail = (arg: string) => !!arg.length
 
 export const validators: Record<CheckoutInfoUnion, (arg: string) => boolean> = {
-  postCode: validatorForPostCode,
+  zipCode: validatorForPostCode,
   address: validatorForAddress,
   name: validatorForName,
   phoneNumber: validatorForPhoneNumber,

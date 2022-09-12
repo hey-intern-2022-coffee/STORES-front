@@ -28,7 +28,7 @@ export const useCheckout = () => {
   const allClear = () => inputs.value.forEach(it => (it.model = ''))
 
   const isShowRequireds = ref({
-    [checkoutInfosEnum.postCode]: false,
+    [checkoutInfosEnum.zipCode]: false,
     [checkoutInfosEnum.address]: false,
     [checkoutInfosEnum.name]: false,
     [checkoutInfosEnum.phoneNumber]: false,

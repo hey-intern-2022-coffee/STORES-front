@@ -35,7 +35,7 @@ const { inputs, purchaseItem, allClear, checkout, isShowRequireds, isLoading } =
             :placeholder="inputInfo.placeholder"
           >
             <template
-              v-if="inputInfo.name === checkoutInfosEnum.postCode"
+              v-if="inputInfo.name === checkoutInfosEnum.zipCode"
               #prepend
             >
               &#12306;</template
