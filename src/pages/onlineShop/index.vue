@@ -1,13 +1,19 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { Item } from '../../modules/onlineShop/types'
 import { useRouter } from 'vue-router'
 import { useCartStore } from '../../store/cart'
-import { apiClient, healthCheck } from '../../modules/healthCheck'
+import { apiClient } from '../../repos/index'
 import { _onlineShopItems } from '../../modules/__mock__/onlineShop'
+import { useFetch } from '../../modules/utils/api'
 
-const items = reactive<Array<Item>>(_onlineShopItems)
+const items = ref<Array<Item>>(_onlineShopItems)
+
+const allProducts = ref()
+const { fetchPending } = useFetch(async () => {
+  allProducts.value = await apiClient.products.get()
+  console.debug(allProducts.value)
+})
 
 // FIXME: constantファイルに移動
 const buttonTextInItemCard = 'カゴに入れる'
@@ -17,10 +23,11 @@ const router = useRouter()
 const purchase = async (item: Item) => {
   cartStore.addItem(item)
   // await healthCheck() // FIXME: del
-
   router.push({ name: 'checkoutView' })
 }
+console.debug(items)
 </script>
+
 <template>
   <div class="root">
     <div id="card-items" v-for="item in items">
@@ -46,6 +53,7 @@ const purchase = async (item: Item) => {
     </div>
   </div>
 </template>
+
 <style scoped>
 .root {
   display: flex;
