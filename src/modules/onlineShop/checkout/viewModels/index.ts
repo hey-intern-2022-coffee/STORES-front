@@ -4,6 +4,10 @@ import { useCartStore } from '../../../../store/cart'
 import { checkoutInfosEnum, INPUTS_FOR_ORDER } from '../../../constant'
 import { validators } from '../models'
 import { ItemInfoForCheckoutForm } from '../../types/checkout'
+import { useFetch } from '../../../utils/api.ts'
+import { apiClient } from '../../../../repos'
+import { UserInfo } from '../../../../lib/@types'
+import { usePurchaseStore } from '../../../../store'
 
 export const useCheckout = () => {
   const router = useRouter()
@@ -16,7 +20,7 @@ export const useCheckout = () => {
         title: cartStore.items[cartStore.items.length - 1]?.title,
         count: cartStore.items[cartStore.items.length - 1]?.count,
         price: cartStore.items[cartStore.items.length - 1]?.price,
-        img: cartStore.items[cartStore.items.length - 1]?.img,
+        image_url: cartStore.items[cartStore.items.length - 1]?.image_url,
         receive: '現地',
         shopName: 'amazon.com'
       }
@@ -49,11 +53,30 @@ export const useCheckout = () => {
 
   const isLoading = ref(false)
   const checkout = async () => {
-    console.debug('checkout')
     isAllowedToCheckout.value = true
     validateForm()
     if (!isAllowedToCheckout.value) return
     isLoading.value = true
+
+    const userInfo = Object.fromEntries(
+      Object.entries(inputs.value).map(([key, value]) => [
+        value.name,
+        value.model
+      ])
+    )
+    const { body: purchaseInfo } = await apiClient.purchase.post({
+      body: {
+        name: userInfo.name,
+        address: userInfo.address,
+        phone_number: userInfo.phoneNumber,
+        mail_address: userInfo.email,
+        purchases_products: [{ product_id: 1 }]
+      }
+    })
+    // FIXME: purchaseIdをstoreに登録(現状: レスポンスが返ってきていない, BE待ち.)
+    const store = usePurchaseStore()
+    console.debug(purchaseInfo)
+    if (purchaseInfo.id) store.setPurchaseId(purchaseInfo.id)
 
     // TODO: post request
     // router.push({ name: 'qrCodeView' })

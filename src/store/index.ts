@@ -1,13 +1,16 @@
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
 
-export const useCounterStore = defineStore('counter', () => {
-  const count = ref(0)
-  const name = ref('Eduardo')
-  const doubleCount = computed(() => count.value * 2)
-  function increment() {
-    count.value++
+export const usePurchaseStore = defineStore('purchase', {
+  state: () => ({ purchaseId: 0 }),
+  getters: {
+    getPurchaseId: state => state.purchaseId
+  },
+  actions: {
+    setPurchaseId(arg: number) {
+      this.purchaseId = arg
+    }
+  },
+  persist: {
+    enabled: true
   }
-
-  return { count, name, doubleCount, increment }
 })

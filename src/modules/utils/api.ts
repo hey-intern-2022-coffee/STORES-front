@@ -5,8 +5,13 @@ export const useFetch = (
 ): { fetchPending: Ref<boolean> } => {
   const fetchPending = ref(true)
   ;(async () => {
-    await callback()
-    fetchPending.value = false
+    try {
+      await callback()
+      fetchPending.value = false
+    } catch (e) {
+      console.error(e)
+      fetchPending.value = false
+    }
   })()
   return { fetchPending }
 }

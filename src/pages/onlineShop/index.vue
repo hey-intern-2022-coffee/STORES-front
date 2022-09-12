@@ -7,12 +7,13 @@ import { apiClient } from '../../repos/index'
 import { _onlineShopItems } from '../../modules/__mock__/onlineShop'
 import { useFetch } from '../../modules/utils/api'
 
-const items = ref<Array<Item>>(_onlineShopItems)
+const items = ref<Array<Item>>() // _onlineShopItems
 
 const allProducts = ref()
 const { fetchPending } = useFetch(async () => {
-  allProducts.value = await apiClient.products.get()
-  console.debug(allProducts.value)
+  allProducts.value = await apiClient.products.get() // FIXME: 型
+  items.value = allProducts.value.body
+  console.debug(allProducts.value.body)
 })
 
 // FIXME: constantファイルに移動
@@ -35,9 +36,8 @@ console.debug(items)
       <el-card :body-style="{ padding: '0px', width: '100%' }" class="el-card">
         <div class="card-content">
           <div class="images">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-            />
+            <img :src="item.image_url" />
+            <!-- src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" -->
           </div>
           <div>
             {{ item.title }}
