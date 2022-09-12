@@ -2,6 +2,6 @@ export type Item = {
   id: number
   title: string
   price: number
-  img: string
+  image_url: string
   count: number
 }

@@ -4,6 +4,9 @@ import { useCartStore } from '../../../../store/cart'
 import { checkoutInfosEnum, INPUTS_FOR_ORDER } from '../../../constant'
 import { validators } from '../models'
 import { ItemInfoForCheckoutForm } from '../../types/checkout'
+import { useFetch } from '../../../utils/api'
+import { apiClient } from '../../../../repos'
+import { UserInfo } from '../../../../lib/@types'
 
 export const useCheckout = () => {
   const router = useRouter()
@@ -54,6 +57,22 @@ export const useCheckout = () => {
     validateForm()
     if (!isAllowedToCheckout.value) return
     isLoading.value = true
+
+    const userInfo = Object.fromEntries(
+      Object.entries(inputs.value).map(([key, value]) => [
+        value.name,
+        value.model
+      ])
+    )
+    await apiClient.purchase.post({
+      body: {
+        name: userInfo.name,
+        address: userInfo.address,
+        phone_number: userInfo.phoneNumber,
+        mail_address: userInfo.email,
+        purchases_products: [{ product_id: 1 }]
+      }
+    })
 
     // TODO: post request
     // router.push({ name: 'qrCodeView' })
