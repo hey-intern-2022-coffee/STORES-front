@@ -59,8 +59,8 @@ const { inputs, purchaseItem, allClear, checkout, isShowRequireds, isLoading } =
   <div class="order-info">
     <h2>{{ LABELS_ON_CHECKOUT_FORM.orderInfo.title }}</h2>
     <div class="order-info-contents">
-      <div>
-        <GoodsCardForCheckoutForm :item="purchaseItem[0]" />
+      <div v-for="item in purchaseItem">
+        <GoodsCardForCheckoutForm :item="item" />
       </div>
       <div class="btn">
         <ButtonWithLoading
