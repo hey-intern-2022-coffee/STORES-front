@@ -12,6 +12,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const PATH2 = '/purchase'
   const GET = 'GET'
   const POST = 'POST'
+  const PUT = 'PUT'
   const PATCH = 'PATCH'
 
   return {
@@ -91,6 +92,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        */
       $patch: (option: { body: Methods3['patch']['reqBody'], config?: T | undefined }) =>
         fetch<Methods3['patch']['resBody'], BasicHeaders, Methods3['patch']['status']>(prefix, PATH2, PATCH, option).json().then(r => r.body),
+      /**
+       * @returns successful
+       */
+      put: (option: { body: Methods3['put']['reqBody'], config?: T | undefined }) =>
+        fetch<Methods3['put']['resBody'], BasicHeaders, Methods3['put']['status']>(prefix, PATH2, PUT, option).json(),
+      /**
+       * @returns successful
+       */
+      $put: (option: { body: Methods3['put']['reqBody'], config?: T | undefined }) =>
+        fetch<Methods3['put']['resBody'], BasicHeaders, Methods3['put']['status']>(prefix, PATH2, PUT, option).json().then(r => r.body),
       $path: () => `${prefix}${PATH2}`
     },
     /**

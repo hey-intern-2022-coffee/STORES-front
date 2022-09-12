@@ -15,4 +15,11 @@ export type Methods = {
     resBody: Types.Products
     reqBody: number
   }
+
+  put: {
+    status: 200
+    /** successful */
+    resBody: Types.Purchase
+    reqBody: number
+  }
 }

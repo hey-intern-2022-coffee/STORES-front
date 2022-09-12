@@ -5,13 +5,13 @@ export type Methods = {
   post: {
     status: 201
     /** created products */
-    resBody: Types.Products
-    reqBody: Types.Products
+    resBody: Types.OnlineProducts
+    reqBody: Types.OnlineProducts
   }
 
   get: {
     status: 200
     /** successful */
-    resBody: Types.Products[]
+    resBody: Types.OnlineProducts[]
   }
 }

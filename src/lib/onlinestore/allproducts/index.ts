@@ -5,6 +5,6 @@ export type Methods = {
   get: {
     status: 200
     /** successful */
-    resBody: Types.Products[]
+    resBody: Types.OnlineProducts[]
   }
 }
