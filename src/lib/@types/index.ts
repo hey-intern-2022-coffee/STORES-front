@@ -15,7 +15,13 @@ export type UserInfo = {
   /** メールアドレス */
   mail_address?: string | undefined
   /** 購入した商品 */
-  product_ids?: number[] | undefined
+  purchases_products?: (PurchasesProducts)[] | undefined
+}
+
+/** 商品IDを関連付ける */
+export type PurchasesProducts = {
+  /** 商品ID */
+  product_id?: number | undefined
 }
 
 /** 購入する */
@@ -26,19 +32,21 @@ export type Purchase = UserInfo & {
   is_acceptance?: boolean | undefined
 }
 
+export type OnlineProducts = Products & {
+  online_stock?: {
+    /** オンライン商品の在庫 */
+    stock_quantity?: number | undefined
+  } | undefined
+}
+
 /** 登録された商品 */
-export type Products = OnlineStock & {
+export type Products = {
   /** 商品のID */
   id?: number | undefined
   /** 商品の名前 */
-  name?: string | undefined
+  name: string
   /** 商品の値段 */
   price?: number | undefined
   /** 商品画像 */
   image_url?: string | undefined
-}
-
-/** オンライン上の商品の在庫 */
-export type OnlineStock = {
-  stock_quantity?: number | undefined
 }
