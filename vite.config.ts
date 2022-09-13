@@ -10,7 +10,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src').replace(/\\/g, '/')
     }
   },
-  plugins: [vue(), manualChunksPlugin()],
+  plugins: [
+    vue()
+    // , manualChunksPlugin()
+  ],
   test: {
     globals: true,
     environment: 'happy-dom'
