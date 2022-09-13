@@ -1,6 +1,6 @@
 [[redirects]]
-  from = "/.+"
-  to = "https://stores-coffee.netlify.com"
+  from = "/*"
+  to = "/"
   status = 200
   force = true
   headers = {X-From = "Netlify"}
