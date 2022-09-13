@@ -13,13 +13,10 @@ export type Methods = {
     status: 200
     /** successful */
     resBody: Types.Products
-    reqBody: number
-  }
 
-  put: {
-    status: 200
-    /** successful */
-    resBody: Types.Purchase
-    reqBody: number
+    reqBody: {
+      /** ProductsのID */
+      id: number
+    }
   }
 }

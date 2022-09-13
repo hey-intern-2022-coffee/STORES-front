@@ -1,13 +1,14 @@
 import type { AspidaClient, BasicHeaders } from 'aspida'
 import type { Methods as Methods0 } from '.'
 import type { Methods as Methods1 } from './_purchases_id@number'
+import type { Methods as Methods2 } from './delivered'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? '' : baseURL).replace(/\/$/, '')
   const PATH0 = '/purchase'
+  const PATH1 = '/purchase/delivered'
   const GET = 'GET'
   const POST = 'POST'
-  const PUT = 'PUT'
   const PATCH = 'PATCH'
 
   return {
@@ -27,6 +28,19 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           fetch<Methods1['get']['resBody'], BasicHeaders, Methods1['get']['status']>(prefix, prefix0, GET, option).json().then(r => r.body),
         $path: () => `${prefix}${prefix0}`
       }
+    },
+    delivered: {
+      /**
+       * @returns successful
+       */
+      patch: (option: { body: Methods2['patch']['reqBody'], config?: T | undefined }) =>
+        fetch<Methods2['patch']['resBody'], BasicHeaders, Methods2['patch']['status']>(prefix, PATH1, PATCH, option).json(),
+      /**
+       * @returns successful
+       */
+      $patch: (option: { body: Methods2['patch']['reqBody'], config?: T | undefined }) =>
+        fetch<Methods2['patch']['resBody'], BasicHeaders, Methods2['patch']['status']>(prefix, PATH1, PATCH, option).json().then(r => r.body),
+      $path: () => `${prefix}${PATH1}`
     },
     /**
      * @returns Created Content
@@ -48,16 +62,6 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
      */
     $patch: (option: { body: Methods0['patch']['reqBody'], config?: T | undefined }) =>
       fetch<Methods0['patch']['resBody'], BasicHeaders, Methods0['patch']['status']>(prefix, PATH0, PATCH, option).json().then(r => r.body),
-    /**
-     * @returns successful
-     */
-    put: (option: { body: Methods0['put']['reqBody'], config?: T | undefined }) =>
-      fetch<Methods0['put']['resBody'], BasicHeaders, Methods0['put']['status']>(prefix, PATH0, PUT, option).json(),
-    /**
-     * @returns successful
-     */
-    $put: (option: { body: Methods0['put']['reqBody'], config?: T | undefined }) =>
-      fetch<Methods0['put']['resBody'], BasicHeaders, Methods0['put']['status']>(prefix, PATH0, PUT, option).json().then(r => r.body),
     $path: () => `${prefix}${PATH0}`
   }
 }

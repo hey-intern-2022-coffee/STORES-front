@@ -1,5 +1,6 @@
 import type { AspidaClient, BasicHeaders } from 'aspida'
 import type { Methods as Methods0 } from '.'
+import type { Methods as Methods1 } from './_id'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? '' : baseURL).replace(/\/$/, '')
@@ -8,6 +9,23 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const POST = 'POST'
 
   return {
+    _id: (val0: number | string) => {
+      const prefix0 = `${PATH0}/${val0}`
+
+      return {
+        /**
+         * @returns successful
+         */
+        get: (option?: { config?: T | undefined } | undefined) =>
+          fetch<Methods1['get']['resBody'], BasicHeaders, Methods1['get']['status']>(prefix, prefix0, GET, option).json(),
+        /**
+         * @returns successful
+         */
+        $get: (option?: { config?: T | undefined } | undefined) =>
+          fetch<Methods1['get']['resBody'], BasicHeaders, Methods1['get']['status']>(prefix, prefix0, GET, option).json().then(r => r.body),
+        $path: () => `${prefix}${prefix0}`
+      }
+    },
     /**
      * @returns created products
      */
