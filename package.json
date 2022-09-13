@@ -23,7 +23,6 @@
     "pinia": "^2.0.22",
     "prettier": "^2.7.1",
     "qrcode": "^1.5.1",
-    "vite-plugin-webpackchunkname": "^0.1.1",
     "vue": "^3.2.37",
     "vue-router": "4"
   },

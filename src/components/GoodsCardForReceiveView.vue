@@ -24,7 +24,7 @@ watch(
     <el-card :body-style="{ padding: '0px', width: '100%' }" class="el-card">
       <div class="card-content">
         <div class="images">
-          <img :src="item.img" />
+          <img :src="item.image_url" />
         </div>
         <div class="center">
           <div>{{ item.title }}</div>

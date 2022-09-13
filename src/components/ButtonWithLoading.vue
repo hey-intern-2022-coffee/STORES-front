@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { PropType } from 'vue'
+
 const props = defineProps({
   text: String,
-  clickMethod: Function,
+  clickMethod: { type: Function as PropType<(e: any) => any>, required: true },
   isLoading: Boolean,
   customStyle: String
 })
