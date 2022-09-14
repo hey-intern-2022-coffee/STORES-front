@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import { Item } from '../../modules/onlineShop/types'
+// import { Item } from '../../modules/onlineShop/types'
 import { useRouter } from 'vue-router'
 import { useCartStore } from '../../store/cart'
 import { apiClient } from '../../repos/index'
 import { _onlineShopItems } from '../../modules/__mock__/onlineShop'
 import { useFetch } from '../../modules/utils/api'
+import { OnlineProducts } from '../../lib/@types'
 
-const items = ref<Array<Item>>() // _onlineShopItems
+const items = ref<Array<OnlineProducts>>() // _onlineShopItems
 
 const allProducts = ref()
 const { fetchPending } = useFetch(async () => {
@@ -21,7 +22,7 @@ const buttonTextInItemCard = 'カゴに入れる'
 const cartStore = useCartStore()
 const router = useRouter()
 
-const purchase = async (item: Item) => {
+const purchase = async (item: OnlineProducts) => {
   cartStore.addItem(item)
   // await healthCheck() // FIXME: del
   router.push({ name: 'checkoutView' })
@@ -40,7 +41,7 @@ console.debug(items)
             <!-- src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" -->
           </div>
           <div>
-            {{ item.title }}
+            {{ item.name }}
             &yen;{{ item.price }}
           </div>
           <div class="bottom">
