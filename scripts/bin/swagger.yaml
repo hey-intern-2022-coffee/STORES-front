@@ -11,7 +11,7 @@ paths:
           application/json:
             schema:
               # "$ref": "#/components/schemas/Purchase"
-              "$ref": "#/components/schemas/UserInfo"
+              '$ref': '#/components/schemas/UserInfo'
         required: true
       responses:
         '201':
@@ -19,11 +19,26 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/Purchase"
+                '$ref': '#/components/schemas/Purchase'
         '400':
           description: Bad request
         '500':
           description: Internal server error
+    put:
+      summary: 商品の編集をする
+      requestBody:
+        content:
+          application/json:
+            schema:
+              '$ref': '#/components/schemas/OnlineProducts'
+        required: true
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/OnlineProducts'
     patch:
       summary: 購入IDに紐づいた商品の在庫を1減らす
       requestBody:
@@ -41,11 +56,25 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/Products"
+                '$ref': '#/components/schemas/Products'
         '400':
           description: Bad request
         '500':
           description: Internal server error
+    delete:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: ProductのID
+      responses:
+        '204':
+          description: No Content
+
   /purchase/delivered:
     patch:
       summary: 商品引き渡した状態にする
@@ -64,7 +93,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/Purchase"
+                '$ref': '#/components/schemas/Purchase'
 
   /purchase/{purchases_id}:
     get:
@@ -82,7 +111,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/Purchase"
+                '$ref': '#/components/schemas/Purchase'
   /products:
     post:
       summary: 商品を登録する
@@ -90,14 +119,14 @@ paths:
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/OnlineProducts"
+              '$ref': '#/components/schemas/OnlineProducts'
       responses:
         '201':
           description: created products
           content:
-           application/json:
-            schema:
-              "$ref": "#/components/schemas/OnlineProducts"
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/OnlineProducts'
     get:
       summary: 商品の一覧取得する
       responses:
@@ -108,7 +137,7 @@ paths:
               schema:
                 type: array
                 items:
-                  "$ref": "#/components/schemas/OnlineProducts"
+                  '$ref': '#/components/schemas/OnlineProducts'
   /products/{id}:
     get:
       summary: 商品をIDで取得する
@@ -125,7 +154,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/OnlineProducts"
+                '$ref': '#/components/schemas/OnlineProducts'
   /onlinestore/allproducts:
     get:
       summary: オンラインショップ側の商品一覧を取得する
@@ -137,7 +166,7 @@ paths:
               schema:
                 type: array
                 items:
-                  "$ref": "#/components/schemas/OnlineProducts"
+                  '$ref': '#/components/schemas/OnlineProducts'
   /:
     get:
       summary: ヘルスチェック
@@ -184,7 +213,7 @@ components:
           items:
             type: object
             allOf:
-            - "$ref": "#/components/schemas/PurchasesProducts"
+              - '$ref': '#/components/schemas/PurchasesProducts'
     PurchasesProducts:
       type: object
       description: 商品IDを関連付ける
@@ -196,19 +225,19 @@ components:
       type: object
       description: 購入する
       allOf:
-      - "$ref": "#/components/schemas/UserInfo"
-      - properties:
-          id:
-            type: integer
-            description: PurchaseのID
-          is_acceptance:
-            type: boolean
-            default: false
-            description: 受け取ったかどうか
+        - '$ref': '#/components/schemas/UserInfo'
+        - properties:
+            id:
+              type: integer
+              description: PurchaseのID
+            is_acceptance:
+              type: boolean
+              default: false
+              description: 受け取ったかどうか
     OnlineProducts:
       type: object
       allOf:
-        - "$ref": "#/components/schemas/Products"
+        - '$ref': '#/components/schemas/Products'
         - properties:
             online_stock:
               type: object
@@ -220,18 +249,18 @@ components:
       type: object
       description: 登録された商品
       properties:
-          id:
-            type: integer
-            description: 商品のID
-          name:
-            type: string
-            description: 商品の名前
-          price:
-            type: integer
-            description: 商品の値段
-          image_url:
-            type: string
-            description: 商品画像
+        id:
+          type: integer
+          description: 商品のID
+        name:
+          type: string
+          description: 商品の名前
+        price:
+          type: integer
+          description: 商品の値段
+        image_url:
+          type: string
+          description: 商品画像
       required:
         - name
         - address
