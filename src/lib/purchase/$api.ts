@@ -9,8 +9,6 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const PATH1 = '/purchase/delivered'
   const GET = 'GET'
   const POST = 'POST'
-  const PUT = 'PUT'
-  const DELETE = 'DELETE'
   const PATCH = 'PATCH'
 
   return {
@@ -55,16 +53,6 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     $post: (option: { body: Methods0['post']['reqBody'], config?: T | undefined }) =>
       fetch<Methods0['post']['resBody'], BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option).json().then(r => r.body),
     /**
-     * @returns Successful
-     */
-    put: (option: { body: Methods0['put']['reqBody'], config?: T | undefined }) =>
-      fetch<Methods0['put']['resBody'], BasicHeaders, Methods0['put']['status']>(prefix, PATH0, PUT, option).json(),
-    /**
-     * @returns Successful
-     */
-    $put: (option: { body: Methods0['put']['reqBody'], config?: T | undefined }) =>
-      fetch<Methods0['put']['resBody'], BasicHeaders, Methods0['put']['status']>(prefix, PATH0, PUT, option).json().then(r => r.body),
-    /**
      * @returns successful
      */
     patch: (option: { body: Methods0['patch']['reqBody'], config?: T | undefined }) =>
@@ -74,10 +62,6 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
      */
     $patch: (option: { body: Methods0['patch']['reqBody'], config?: T | undefined }) =>
       fetch<Methods0['patch']['resBody'], BasicHeaders, Methods0['patch']['status']>(prefix, PATH0, PATCH, option).json().then(r => r.body),
-    delete: (option: { body: Methods0['delete']['reqBody'], config?: T | undefined }) =>
-      fetch<void, BasicHeaders, Methods0['delete']['status']>(prefix, PATH0, DELETE, option).send(),
-    $delete: (option: { body: Methods0['delete']['reqBody'], config?: T | undefined }) =>
-      fetch<void, BasicHeaders, Methods0['delete']['status']>(prefix, PATH0, DELETE, option).send().then(r => r.body),
     $path: () => `${prefix}${PATH0}`
   }
 }

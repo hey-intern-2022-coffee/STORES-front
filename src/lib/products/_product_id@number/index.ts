@@ -7,4 +7,8 @@ export type Methods = {
     /** successful */
     resBody: Types.OnlineProducts
   }
+
+  delete: {
+    status: 204
+  }
 }

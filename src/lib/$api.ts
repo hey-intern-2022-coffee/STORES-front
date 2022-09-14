@@ -2,7 +2,7 @@ import type { AspidaClient, BasicHeaders } from 'aspida'
 import type { Methods as Methods0 } from '.'
 import type { Methods as Methods1 } from './onlinestore/allproducts'
 import type { Methods as Methods2 } from './products'
-import type { Methods as Methods3 } from './products/_id'
+import type { Methods as Methods3 } from './products/_product_id@number'
 import type { Methods as Methods4 } from './purchase'
 import type { Methods as Methods5 } from './purchase/_purchases_id@number'
 import type { Methods as Methods6 } from './purchase/delivered'
@@ -36,7 +36,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       }
     },
     products: {
-      _id: (val1: number | string) => {
+      _product_id: (val1: number) => {
         const prefix1 = `${PATH1}/${val1}`
 
         return {
@@ -50,6 +50,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            */
           $get: (option?: { config?: T | undefined } | undefined) =>
             fetch<Methods3['get']['resBody'], BasicHeaders, Methods3['get']['status']>(prefix, prefix1, GET, option).json().then(r => r.body),
+          delete: (option?: { config?: T | undefined } | undefined) =>
+            fetch<void, BasicHeaders, Methods3['delete']['status']>(prefix, prefix1, DELETE, option).send(),
+          $delete: (option?: { config?: T | undefined } | undefined) =>
+            fetch<void, BasicHeaders, Methods3['delete']['status']>(prefix, prefix1, DELETE, option).send().then(r => r.body),
           $path: () => `${prefix}${prefix1}`
         }
       },
@@ -73,6 +77,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        */
       $get: (option?: { config?: T | undefined } | undefined) =>
         fetch<Methods2['get']['resBody'], BasicHeaders, Methods2['get']['status']>(prefix, PATH1, GET, option).json().then(r => r.body),
+      /**
+       * @returns Successful
+       */
+      put: (option: { body: Methods2['put']['reqBody'], config?: T | undefined }) =>
+        fetch<Methods2['put']['resBody'], BasicHeaders, Methods2['put']['status']>(prefix, PATH1, PUT, option).json(),
+      /**
+       * @returns Successful
+       */
+      $put: (option: { body: Methods2['put']['reqBody'], config?: T | undefined }) =>
+        fetch<Methods2['put']['resBody'], BasicHeaders, Methods2['put']['status']>(prefix, PATH1, PUT, option).json().then(r => r.body),
       $path: () => `${prefix}${PATH1}`
     },
     purchase: {
@@ -117,16 +131,6 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       $post: (option: { body: Methods4['post']['reqBody'], config?: T | undefined }) =>
         fetch<Methods4['post']['resBody'], BasicHeaders, Methods4['post']['status']>(prefix, PATH2, POST, option).json().then(r => r.body),
       /**
-       * @returns Successful
-       */
-      put: (option: { body: Methods4['put']['reqBody'], config?: T | undefined }) =>
-        fetch<Methods4['put']['resBody'], BasicHeaders, Methods4['put']['status']>(prefix, PATH2, PUT, option).json(),
-      /**
-       * @returns Successful
-       */
-      $put: (option: { body: Methods4['put']['reqBody'], config?: T | undefined }) =>
-        fetch<Methods4['put']['resBody'], BasicHeaders, Methods4['put']['status']>(prefix, PATH2, PUT, option).json().then(r => r.body),
-      /**
        * @returns successful
        */
       patch: (option: { body: Methods4['patch']['reqBody'], config?: T | undefined }) =>
@@ -136,10 +140,6 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        */
       $patch: (option: { body: Methods4['patch']['reqBody'], config?: T | undefined }) =>
         fetch<Methods4['patch']['resBody'], BasicHeaders, Methods4['patch']['status']>(prefix, PATH2, PATCH, option).json().then(r => r.body),
-      delete: (option: { body: Methods4['delete']['reqBody'], config?: T | undefined }) =>
-        fetch<void, BasicHeaders, Methods4['delete']['status']>(prefix, PATH2, DELETE, option).send(),
-      $delete: (option: { body: Methods4['delete']['reqBody'], config?: T | undefined }) =>
-        fetch<void, BasicHeaders, Methods4['delete']['status']>(prefix, PATH2, DELETE, option).send().then(r => r.body),
       $path: () => `${prefix}${PATH2}`
     },
     /**

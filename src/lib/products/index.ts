@@ -14,4 +14,11 @@ export type Methods = {
     /** successful */
     resBody: Types.OnlineProducts[]
   }
+
+  put: {
+    status: 200
+    /** Successful */
+    resBody: Types.OnlineProducts
+    reqBody: Types.OnlineProducts
+  }
 }

@@ -9,13 +9,6 @@ export type Methods = {
     reqBody: Types.UserInfo
   }
 
-  put: {
-    status: 200
-    /** Successful */
-    resBody: Types.OnlineProducts
-    reqBody: Types.OnlineProducts
-  }
-
   patch: {
     status: 200
     /** successful */
@@ -23,15 +16,6 @@ export type Methods = {
 
     reqBody: {
       /** ProductsのID */
-      id: number
-    }
-  }
-
-  delete: {
-    status: 204
-
-    reqBody: {
-      /** ProductのID */
       id: number
     }
   }
