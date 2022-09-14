@@ -12,7 +12,11 @@ export type Methods = {
   patch: {
     status: 200
     /** successful */
-    resBody: Types.Products
+    resBody: {
+      id: number
+      product_id: number
+      purchases_id: number
+    }[]
 
     reqBody: {
       /** ProductsのID */
