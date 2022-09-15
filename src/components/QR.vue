@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import QRCode from 'qrcode'
-
+// FIXME: vueuseのuseQRCodeを使う
 const props = defineProps<{
   src: String
 }>()
