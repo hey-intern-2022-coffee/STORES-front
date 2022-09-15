@@ -1,6 +1,6 @@
 import { computed, ComputedRef, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useCartStore } from '../../../../store/cart'
+// import { useCartStore } from '../../../../store/cart'
 import { checkoutInfosEnum, INPUTS_FOR_ORDER } from '../../../constant'
 import { validators } from '../models'
 import { ItemInfoForCheckoutForm } from '../../types/checkout'
@@ -8,26 +8,16 @@ import { useFetch } from '../../../utils/api'
 import { apiClient } from '../../../../repos'
 import { UserInfo } from '../../../../lib/@types'
 import { usePurchaseStore } from '../../../../store'
+import { useOrderStore } from '../../../../store/order'
 
 export const useCheckout = () => {
   const router = useRouter()
-  const cartStore = useCartStore()
+  // const cartStore = useCartStore()
+  const orderStore = useOrderStore()
 
-  /** 注文した商品の情報(現状はアイテム一つのみ) */
-  const purchaseItem: ComputedRef<Array<ItemInfoForCheckoutForm>> = computed(
-    () => [
-      // FIXME: 型修正 (swaggerでoptionalになっているのでundefinedが連発している。)
-      {
-        id: cartStore.items[cartStore.items.length - 1]?.id ?? 0,
-        title: cartStore.items[cartStore.items.length - 1]?.name ?? '',
-        count: cartStore.items[cartStore.items.length - 1]?.count ?? 1,
-        price: cartStore.items[cartStore.items.length - 1]?.price ?? 0,
-        image_url: cartStore.items[cartStore.items.length - 1]?.image_url ?? '',
-        receive: '現地',
-        shopName: 'amazon.com'
-      }
-    ]
-  )
+  const purchaseItem = ref<Array<ItemInfoForCheckoutForm>>([])
+  // FIXME: 型修正 (swaggerでoptionalになっているのでundefinedが連発している。)
+
   /** inputのplaceholer, name, 入力情報 */
   const inputs = ref(INPUTS_FOR_ORDER)
 
@@ -66,16 +56,25 @@ export const useCheckout = () => {
         value.model
       ])
     )
+    const productIds = ref<{ product_id: number }[]>([])
+    purchaseItem.value.forEach(it => {
+      for (let i = 0; i < it.count; i++) {
+        productIds.value.push({ product_id: it.id ?? 0 })
+      }
+    })
+    console.debug(productIds.value)
+
     const { body: purchaseInfo } = await apiClient.purchase.post({
       body: {
         name: userInfo.name,
         address: userInfo.address,
         phone_number: userInfo.phoneNumber,
         mail_address: userInfo.email,
-        purchases_products: [
-          { product_id: purchaseItem.value[0].id },
-          { product_id: purchaseItem.value[0].id }
-        ] // FIXME: 決めうち
+        purchases_products: productIds.value
+        // [
+        //   { product_id: purchaseItem.value[0].id },
+        //   { product_id: purchaseItem.value[0].id }
+        // ] // FIXME: 決めうち
       }
     })
     // FIXME: purchaseIdをstoreに登録(現状: レスポンスが返ってきていない, BE待ち.)
@@ -87,6 +86,9 @@ export const useCheckout = () => {
     router.push({ name: 'completeCheckoutView' })
   }
 
+  useFetch(async () => {
+    purchaseItem.value = orderStore.getItems
+  })
   return {
     inputs,
     purchaseItem,

@@ -5,7 +5,7 @@ import { CartItem } from '../modules/onlineShop/types'
 export const useCartStore = defineStore('cart', {
   state: (): { items: Array<CartItem> } => ({ items: [] }),
   getters: {
-    getPurchaseId: state => state.items
+    getItems: state => state.items
   },
   actions: {
     addItem(item: CartItem) {

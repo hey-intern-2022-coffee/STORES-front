@@ -12,6 +12,7 @@ defineProps({
 
 <template>
   <div>
+    {{ item }}
     <el-card :body-style="{ padding: '0px', width: '100%' }" class="el-card">
       <div class="card-content">
         <div class="images">

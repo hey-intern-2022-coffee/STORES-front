@@ -28,9 +28,8 @@ const purchaseItem: ComputedRef<Array<ItemInfoForShoppingCart> | undefined> =
         count: cartStore.items[cartStore.items.length - 1]?.count ?? 1,
         price: cartStore.items[cartStore.items.length - 1]?.price ?? 0,
         image_url: cartStore.items[cartStore.items.length - 1]?.image_url ?? '',
-        // maxAbleToOrder: 0,
         receive: '現地',
-        shopName: 'amazon.com'
+        shopName: ''
       }
     ]
   })
@@ -46,8 +45,6 @@ useFetch(async () => {
   for await (let item of purchaseItem.value) {
     let res = await apiClient.products._product_id(item.id ?? 0).get()
     productInfos.value.push(res.body)
-    // console.debug(getPossibleOrderCounts(res.body))
-    // item.maxAbleToOrder = getPossibleOrderCounts(res.body)
     maxAbleToOrder.value.push(getPossibleOrderCounts(res.body))
   }
 })
@@ -77,7 +74,9 @@ const toOrder = () => {
     item.count = countItems.value[index]
   })
   console.debug(purchaseItem.value)
-  orderStore.addItem(purchaseItem.value)
+  purchaseItem.value?.forEach(it => {
+    orderStore.addItem(it)
+  })
   router.push({ name: 'checkoutView' })
 }
 </script>
