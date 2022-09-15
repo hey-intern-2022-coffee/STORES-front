@@ -1,6 +1,6 @@
 import { computed, ComputedRef, ref } from 'vue'
 import { useRouter } from 'vue-router'
-// import { useCartStore } from '../../../../store/cart'
+import { useCartStore } from '../../../../store/cart'
 import { checkoutInfosEnum, INPUTS_FOR_ORDER } from '../../../constant'
 import { validators } from '../models'
 import { ItemInfoForCheckoutForm } from '../../types/checkout'
@@ -9,13 +9,14 @@ import { apiClient } from '../../../../repos'
 import { UserInfo } from '../../../../lib/@types'
 import { usePurchaseStore } from '../../../../store'
 import { useOrderStore } from '../../../../store/order'
+import { CartItem } from '../../types'
 
 export const useCheckout = () => {
   const router = useRouter()
-  // const cartStore = useCartStore()
+  const cartStore = useCartStore()
   const orderStore = useOrderStore()
 
-  const purchaseItem = ref<Array<ItemInfoForCheckoutForm>>([])
+  const purchaseItem = ref<Array<ItemInfoForCheckoutForm | CartItem>>([])
   // FIXME: 型修正 (swaggerでoptionalになっているのでundefinedが連発している。)
 
   /** inputのplaceholer, name, 入力情報 */
@@ -62,7 +63,6 @@ export const useCheckout = () => {
         productIds.value.push({ product_id: it.id ?? 0 })
       }
     })
-    console.debug(productIds.value)
 
     const { body: purchaseInfo } = await apiClient.purchase.post({
       body: {
@@ -71,23 +71,23 @@ export const useCheckout = () => {
         phone_number: userInfo.phoneNumber,
         mail_address: userInfo.email,
         purchases_products: productIds.value
-        // [
-        //   { product_id: purchaseItem.value[0].id },
-        //   { product_id: purchaseItem.value[0].id }
-        // ] // FIXME: 決めうち
       }
     })
-    // FIXME: purchaseIdをstoreに登録(現状: レスポンスが返ってきていない, BE待ち.)
+
     const store = usePurchaseStore()
-    console.debug(purchaseInfo)
     if (purchaseInfo.id) store.setPurchaseId(purchaseInfo.id)
 
-    // TODO: post request
+    /** storeの中身を空っぽにする */
+    cartStore.clearItems()
+    orderStore.clearItems()
+
     router.push({ name: 'completeCheckoutView' })
   }
 
   useFetch(async () => {
     purchaseItem.value = orderStore.getItems
+    // purchaseItem.value = cartStore.getItems
+    // console.debug(cartStore.getItems)
   })
   return {
     inputs,
