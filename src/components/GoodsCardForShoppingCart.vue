@@ -2,7 +2,7 @@
 import { PropType, ref, watch } from 'vue'
 import { ItemInfoForShoppingCart } from '../modules/onlineShop/types/checkout'
 
-defineProps({
+const props = defineProps({
   item: {
     type: Object as PropType<ItemInfoForShoppingCart>,
     required: true
@@ -17,7 +17,7 @@ defineProps({
   }
 })
 const emit = defineEmits(['update:count'])
-const _count = ref(1)
+const _count = ref(props.count)
 watch(_count, val => {
   emit('update:count', val)
 })

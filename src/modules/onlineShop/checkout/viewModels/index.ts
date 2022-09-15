@@ -85,7 +85,8 @@ export const useCheckout = () => {
   }
 
   useFetch(async () => {
-    purchaseItem.value = orderStore.getItems
+    // purchaseItem.value = orderStore.getItems
+    purchaseItem.value = cartStore.getItems
     // purchaseItem.value = cartStore.getItems
     // console.debug(cartStore.getItems)
   })

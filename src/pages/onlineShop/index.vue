@@ -2,13 +2,13 @@
 import { _onlineShopItems } from '../../modules/__mock__/onlineShop'
 import { useHomeStore } from '../../modules/onlineShop/shop/viewModels'
 
-const { items, allProducts, fetchPending, buttonTextInItemCard, purchase } =
+const { allProducts, fetchPending, buttonTextInItemCard, purchase } =
   useHomeStore()
 </script>
 
 <template>
   <div class="root">
-    <div id="card-items" v-for="item in items">
+    <div id="card-items" v-for="item in allProducts">
       <!-- TODO: make component -->
       <el-card :body-style="{ padding: '0px', width: '100%' }" class="el-card">
         <div class="card-content">
