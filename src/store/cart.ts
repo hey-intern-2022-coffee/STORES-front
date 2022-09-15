@@ -16,6 +16,11 @@ export const useCartStore = defineStore('cart', {
       ) {
         this.items.push(Object.assign(item, { count: 2 }))
       }
+    },
+
+    // NOTE: 一種類しかオーダーしない仕様
+    clearItems() {
+      this.items.length = 0
     }
   },
   persist: {
