@@ -5,14 +5,16 @@ import type { Methods as Methods2 } from './products'
 import type { Methods as Methods3 } from './products/_product_id@number'
 import type { Methods as Methods4 } from './purchase'
 import type { Methods as Methods5 } from './purchase/_purchases_id@number'
-import type { Methods as Methods6 } from './purchase/delivered'
+import type { Methods as Methods6 } from './purchase/all'
+import type { Methods as Methods7 } from './purchase/delivered'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? '' : baseURL).replace(/\/$/, '')
   const PATH0 = '/onlinestore/allproducts'
   const PATH1 = '/products'
   const PATH2 = '/purchase'
-  const PATH3 = '/purchase/delivered'
+  const PATH3 = '/purchase/all'
+  const PATH4 = '/purchase/delivered'
   const GET = 'GET'
   const POST = 'POST'
   const PUT = 'PUT'
@@ -107,18 +109,31 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           $path: () => `${prefix}${prefix1}`
         }
       },
+      all: {
+        /**
+         * @returns successful
+         */
+        get: (option?: { config?: T | undefined } | undefined) =>
+          fetch<Methods6['get']['resBody'], BasicHeaders, Methods6['get']['status']>(prefix, PATH3, GET, option).json(),
+        /**
+         * @returns successful
+         */
+        $get: (option?: { config?: T | undefined } | undefined) =>
+          fetch<Methods6['get']['resBody'], BasicHeaders, Methods6['get']['status']>(prefix, PATH3, GET, option).json().then(r => r.body),
+        $path: () => `${prefix}${PATH3}`
+      },
       delivered: {
         /**
          * @returns successful
          */
-        patch: (option: { body: Methods6['patch']['reqBody'], config?: T | undefined }) =>
-          fetch<Methods6['patch']['resBody'], BasicHeaders, Methods6['patch']['status']>(prefix, PATH3, PATCH, option).json(),
+        patch: (option: { body: Methods7['patch']['reqBody'], config?: T | undefined }) =>
+          fetch<Methods7['patch']['resBody'], BasicHeaders, Methods7['patch']['status']>(prefix, PATH4, PATCH, option).json(),
         /**
          * @returns successful
          */
-        $patch: (option: { body: Methods6['patch']['reqBody'], config?: T | undefined }) =>
-          fetch<Methods6['patch']['resBody'], BasicHeaders, Methods6['patch']['status']>(prefix, PATH3, PATCH, option).json().then(r => r.body),
-        $path: () => `${prefix}${PATH3}`
+        $patch: (option: { body: Methods7['patch']['reqBody'], config?: T | undefined }) =>
+          fetch<Methods7['patch']['resBody'], BasicHeaders, Methods7['patch']['status']>(prefix, PATH4, PATCH, option).json().then(r => r.body),
+        $path: () => `${prefix}${PATH4}`
       },
       /**
        * @returns Created Content

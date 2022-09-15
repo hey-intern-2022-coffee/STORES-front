@@ -16,12 +16,13 @@ export const useCheckout = () => {
   /** 注文した商品の情報(現状はアイテム一つのみ) */
   const purchaseItem: ComputedRef<Array<ItemInfoForCheckoutForm>> = computed(
     () => [
+      // FIXME: 型修正 (swaggerでoptionalになっているのでundefinedが連発している。)
       {
-        id: cartStore.items[cartStore.items.length - 1]?.id,
-        title: cartStore.items[cartStore.items.length - 1]?.name,
-        count: cartStore.items[cartStore.items.length - 1]?.count,
-        price: cartStore.items[cartStore.items.length - 1]?.price,
-        image_url: cartStore.items[cartStore.items.length - 1]?.image_url,
+        id: cartStore.items[cartStore.items.length - 1]?.id ?? 0,
+        title: cartStore.items[cartStore.items.length - 1]?.name ?? '',
+        count: cartStore.items[cartStore.items.length - 1]?.count ?? 1,
+        price: cartStore.items[cartStore.items.length - 1]?.price ?? 0,
+        image_url: cartStore.items[cartStore.items.length - 1]?.image_url ?? '',
         receive: '現地',
         shopName: 'amazon.com'
       }
@@ -71,7 +72,10 @@ export const useCheckout = () => {
         address: userInfo.address,
         phone_number: userInfo.phoneNumber,
         mail_address: userInfo.email,
-        purchases_products: [{ product_id: purchaseItem.value[0].id }] // FIXME: 決めうち
+        purchases_products: [
+          { product_id: purchaseItem.value[0].id },
+          { product_id: purchaseItem.value[0].id }
+        ] // FIXME: 決めうち
       }
     })
     // FIXME: purchaseIdをstoreに登録(現状: レスポンスが返ってきていない, BE待ち.)

@@ -1,7 +1,5 @@
-export type Item = {
-  id: number
-  name: string
-  price: number
-  image_url: string
+import { OnlineProducts } from '../../../lib/@types/index'
+
+export type CartItem = OnlineProducts & {
   count: number
 }

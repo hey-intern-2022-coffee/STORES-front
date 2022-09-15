@@ -1,33 +1,9 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
-// import { Item } from '../../modules/onlineShop/types'
-import { useRouter } from 'vue-router'
-import { useCartStore } from '../../store/cart'
-import { apiClient } from '../../repos/index'
 import { _onlineShopItems } from '../../modules/__mock__/onlineShop'
-import { useFetch } from '../../modules/utils/api'
-import { OnlineProducts } from '../../lib/@types'
+import { useHomeStore } from '../../modules/onlineShop/shop/viewModels'
 
-const items = ref<Array<OnlineProducts>>() // _onlineShopItems
-
-const allProducts = ref()
-const { fetchPending } = useFetch(async () => {
-  allProducts.value = await apiClient.products.get() // FIXME: 型
-  items.value = allProducts.value.body
-  console.debug(allProducts.value.body)
-})
-
-// FIXME: constantファイルに移動
-const buttonTextInItemCard = 'カゴに入れる'
-const cartStore = useCartStore()
-const router = useRouter()
-
-const purchase = async (item: OnlineProducts) => {
-  cartStore.addItem(item)
-  // await healthCheck() // FIXME: del
-  router.push({ name: 'checkoutView' })
-}
-console.debug(items)
+const { items, allProducts, fetchPending, buttonTextInItemCard, purchase } =
+  useHomeStore()
 </script>
 
 <template>
