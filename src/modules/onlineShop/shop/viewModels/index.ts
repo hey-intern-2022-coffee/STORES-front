@@ -23,8 +23,8 @@ export const useHomeStore = () => {
   const purchase = async (item: OnlineProducts) => {
     const goodsInfo: CartItem = Object.assign(item, { count: 2 })
     cartStore.addItem(goodsInfo)
-    router.push({ name: 'checkoutView' })
-    // router.push({ name: 'shoppingCartView' })
+    // router.push({ name: 'checkoutView' })
+    router.push({ name: 'shoppingCartView' })
   }
   return { items, allProducts, fetchPending, buttonTextInItemCard, purchase }
 }

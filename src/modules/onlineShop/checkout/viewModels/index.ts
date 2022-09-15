@@ -84,7 +84,6 @@ export const useCheckout = () => {
     if (purchaseInfo.id) store.setPurchaseId(purchaseInfo.id)
 
     // TODO: post request
-    // router.push({ name: 'qrCodeView' })
     router.push({ name: 'completeCheckoutView' })
   }
 
