@@ -51,19 +51,20 @@ export const checkoutInfosEnum = {
 export const QR_CODE_VIEW_TEXT_IN_ONLINE_STORE = {
   annotation: {
     top: '商品受け取りの際に下記のQRコードをご提示ください。',
-    bottom:
-      '本ページのURLはメールにも送信しておりますのでそちらも合わせてご確認ください。'
+    bottom: ''
+    // '本ページのURLはメールにも送信しておりますのでそちらも合わせてご確認ください。'
   }
 }
 export const COMPLETE_CHECKOUT_VIEW_TEXT_IN_ONLINE_STORE = {
   thanks: 'お買い上げありがとうございます。',
   annotation: {
     top: '商品受け取りの際に下記から表示されるQRコードをご提示ください。',
-    bottom:
-      'URLはメールにも送信しておりますのでそちらも合わせてご確認ください。'
+    bottom: ''
+    // 'URLはメールにも送信しておりますのでそちらも合わせてご確認ください。'
   }
 }
 
 export const SAVE_QR_CODE = 'QRコードを保存する'
 export const INVALID_PURCHASE_ID =
-  '購入IDが正しくありません。\nメールを再度ご確認の上、もう一度アクセスしてください。'
+  '購入情報が存在しません。URLを再度ご確認の上、もう一度アクセスしてください。'
+// '購入IDが正しくありません。\nメールを再度ご確認の上、もう一度アクセスしてください。'
