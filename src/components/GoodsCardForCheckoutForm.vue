@@ -2,7 +2,7 @@
 import { PropType, ref } from 'vue'
 import { ItemInfoForCheckoutForm } from '../modules/onlineShop/types/checkout'
 
-const props = defineProps({
+defineProps({
   item: {
     type: Object as PropType<ItemInfoForCheckoutForm>,
     required: true
@@ -24,7 +24,7 @@ const props = defineProps({
         </div>
         <div class="end">
           <div>数量: {{ item.count }}</div>
-          <div class="shop-name">販売元: {{ item.shopName }}</div>
+          <!-- <div class="shop-name">販売元: {{ item.shopName }}</div> -->
         </div>
       </div>
     </el-card>
