@@ -1,4 +1,4 @@
-import { computed, ComputedRef, ref, watch } from 'vue'
+import { computed, ComputedRef, onBeforeUnmount, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCartStore } from '../../../../store/cart'
 import { ItemInfoForShoppingCart } from '../../types/checkout'
@@ -62,6 +62,7 @@ export const useShoppingCart = () => {
       maxAbleToOrder.value.push(getPossibleOrderCounts(res.body))
     }
   })
+  onBeforeUnmount(() => syncPurchaseItemToStore())
   return {
     purchaseItem,
     possibleOrderCounts,

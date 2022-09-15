@@ -1,4 +1,4 @@
-import { computed, ComputedRef, ref } from 'vue'
+import { computed, ComputedRef, onUnmounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCartStore } from '../../../../store/cart'
 import { checkoutInfosEnum, INPUTS_FOR_ORDER } from '../../../constant'
@@ -85,10 +85,11 @@ export const useCheckout = () => {
   }
 
   useFetch(async () => {
-    // purchaseItem.value = orderStore.getItems
     purchaseItem.value = cartStore.getItems
-    // purchaseItem.value = cartStore.getItems
-    // console.debug(cartStore.getItems)
+  })
+  onUnmounted(() => {
+    cartStore.clearItems()
+    orderStore.clearItems()
   })
   return {
     inputs,
