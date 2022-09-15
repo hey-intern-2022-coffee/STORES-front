@@ -9,6 +9,8 @@ import { usePurchaseStore } from '../../store'
 const store = usePurchaseStore()
 
 const purchaseId = computed<number | null>(() => store.purchaseId)
+
+// NOTE: mailで送って欲しいURL
 const localhostQrUrl = ref(
   `${window.location.href.replace('/completeCheckout', '')}/qr/${
     purchaseId.value
@@ -18,7 +20,11 @@ const router = useRouter()
 const isLoading = ref(false)
 const toLocalhostQrUrl = () => {
   isLoading.value = true
-  window.location.href = localhostQrUrl.value
+  // window.location.href = localhostQrUrl.value
+  router.push({
+    name: 'qrCodeView',
+    params: { purchaseId: purchaseId.value }
+  })
 }
 </script>
 <template>

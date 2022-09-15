@@ -1,17 +1,30 @@
 <script setup lang="ts">
-import { PropType, ref } from 'vue'
-import { ItemInfoForCheckoutForm } from '../modules/onlineShop/types/checkout'
+import { PropType, ref, watch } from 'vue'
+import { ItemInfoForShoppingCart } from '../modules/onlineShop/types/checkout'
 
-defineProps({
+const props = defineProps({
   item: {
-    type: Object as PropType<ItemInfoForCheckoutForm>,
+    type: Object as PropType<ItemInfoForShoppingCart>,
+    required: true
+  },
+  maxAbleToOrder: {
+    type: Number,
+    required: true
+  },
+  count: {
+    type: Number,
     required: true
   }
+})
+const emit = defineEmits(['update:count'])
+const _count = ref(props.count)
+watch(_count, val => {
+  emit('update:count', val)
 })
 </script>
 
 <template>
-  <div v-if="item.count">
+  <div>
     <el-card :body-style="{ padding: '0px', width: '100%' }" class="el-card">
       <div class="card-content">
         <div class="images">
@@ -23,8 +36,10 @@ defineProps({
           <div>受取方法: {{ item.receive }}</div>
         </div>
         <div class="end">
-          <div>数量: {{ item.count }}</div>
-          <!-- <div class="shop-name">販売元: {{ item.shopName }}</div> -->
+          <div>
+            数量:
+            <el-input-number v-model="_count" :min="0" :max="maxAbleToOrder" />
+          </div>
         </div>
       </div>
     </el-card>
