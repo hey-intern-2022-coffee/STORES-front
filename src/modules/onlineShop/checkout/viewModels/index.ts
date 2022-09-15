@@ -17,7 +17,8 @@ export const useCheckout = () => {
   const purchaseItem: ComputedRef<Array<ItemInfoForCheckoutForm>> = computed(
     () => [
       {
-        title: cartStore.items[cartStore.items.length - 1]?.title,
+        id: cartStore.items[cartStore.items.length - 1]?.id,
+        title: cartStore.items[cartStore.items.length - 1]?.name,
         count: cartStore.items[cartStore.items.length - 1]?.count,
         price: cartStore.items[cartStore.items.length - 1]?.price,
         image_url: cartStore.items[cartStore.items.length - 1]?.image_url,
@@ -70,7 +71,7 @@ export const useCheckout = () => {
         address: userInfo.address,
         phone_number: userInfo.phoneNumber,
         mail_address: userInfo.email,
-        purchases_products: [{ product_id: 1 }]
+        purchases_products: [{ product_id: purchaseItem.value[0].id }] // FIXME: 決めうち
       }
     })
     // FIXME: purchaseIdをstoreに登録(現状: レスポンスが返ってきていない, BE待ち.)

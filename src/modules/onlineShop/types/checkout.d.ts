@@ -2,6 +2,7 @@ import { checkoutInfosEnum } from '../../constant'
 
 export type ReceiveWays = '現地'
 export type ItemInfoForCheckoutForm = {
+  id?: number
   title: string
   price: number
   image_url: string
