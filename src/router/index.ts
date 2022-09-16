@@ -48,6 +48,14 @@ const routes: RouteRecordRaw[] = [
           )
       },
       {
+        path: 'purchaseInfo',
+        name: 'purchaseInfoView',
+        component: () =>
+          import(
+            /* webpackChunkName: "online-shop" */ '@/pages/onlineShop/purchaseInfoView.vue'
+          )
+      },
+      {
         path: '/qr/:purchaseId',
         name: 'qrCodeView',
         component: () =>

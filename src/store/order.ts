@@ -24,7 +24,7 @@ export const useOrderStore = defineStore('order', {
 
     // NOTE: 一種類しかオーダーしない仕様
     clearItems() {
-      this.items.length = 0
+      this.items = []
     }
   },
   persist: {

@@ -16,7 +16,7 @@ export const useCheckout = () => {
   const cartStore = useCartStore()
   const orderStore = useOrderStore()
 
-  const purchaseItem = ref<Array<ItemInfoForCheckoutForm | CartItem>>([])
+  const purchaseItem = ref<Array<ItemInfoForCheckoutForm>>([])
   // FIXME: 型修正 (swaggerでoptionalになっているのでundefinedが連発している。)
 
   /** inputのplaceholer, name, 入力情報 */
@@ -80,6 +80,7 @@ export const useCheckout = () => {
     /** storeの中身を空っぽにする */
     cartStore.clearItems()
     orderStore.clearItems()
+    cartStore.setItems([])
 
     router.push({ name: 'completeCheckoutView' })
   }
@@ -88,8 +89,8 @@ export const useCheckout = () => {
     purchaseItem.value = cartStore.getItems
   })
   onUnmounted(() => {
-    cartStore.clearItems()
-    orderStore.clearItems()
+    // cartStore.clearItems()
+    // orderStore.clearItems()
   })
   return {
     inputs,

@@ -1,3 +1,4 @@
+import { bottomMenuElement } from '../types'
 import { CheckoutInfoUnion } from './onlineShop/types/checkout'
 export const APP_NAME = 'STORES'
 
@@ -68,3 +69,32 @@ export const SAVE_QR_CODE = 'QRコードを保存する'
 export const INVALID_PURCHASE_ID =
   '購入情報が存在しません。URLを再度ご確認の上、もう一度アクセスしてください。'
 // '購入IDが正しくありません。\nメールを再度ご確認の上、もう一度アクセスしてください。'
+
+export const pathNames = {
+  authentication: 'authentication',
+  onlineShop: 'onlineShop',
+  shoppingCartView: 'shoppingCartView',
+  checkoutView: 'checkoutView',
+  completeCheckoutView: 'completeCheckoutView',
+  qrCodeView: 'qrCodeView',
+  purchaseInfoView: 'purchaseInfoView',
+  NotFoundError: 'NotFoundError'
+} as const
+
+export const menus: bottomMenuElement[] = [
+  {
+    id: 0,
+    label: 'ホーム',
+    pathName: 'onlineShop'
+  } as const,
+  {
+    id: 1,
+    label: 'カート',
+    pathName: 'shoppingCartView'
+  } as const,
+  {
+    id: 2,
+    label: '購入情報',
+    pathName: 'purchaseInfoView' //購入ID一覧 PurchaseInfoView
+  } as const
+]

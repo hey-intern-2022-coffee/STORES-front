@@ -8,7 +8,9 @@ import { usePurchaseStore } from '../../store'
 // const localhostQrUrl = ref(`${import.meta.env.VITE_BASE_URL}/qr/19283102938`)
 const store = usePurchaseStore()
 
-const purchaseId = computed<number | null>(() => store.purchaseId)
+const purchaseId = computed<number | null>(
+  () => store.getPurchaseIds[store.getPurchaseIds.length - 1]
+)
 
 // NOTE: mailで送って欲しいURL
 const localhostQrUrl = ref(
