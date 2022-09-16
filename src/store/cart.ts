@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { OnlineProducts } from '../lib/@types'
+// import { OnlineProducts } from '../lib/@types'
 import { CartItem } from '../modules/onlineShop/types'
 import { ItemInfoForShoppingCart } from '../modules/onlineShop/types/checkout'
 
@@ -24,7 +24,7 @@ export const useCartStore = defineStore('cart', {
     },
     // NOTE: 一種類しかオーダーしない仕様
     clearItems() {
-      this.items.length = 0
+      this.items = []
     }
   },
   persist: {

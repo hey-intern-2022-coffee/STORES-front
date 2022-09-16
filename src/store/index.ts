@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia'
 
 export const usePurchaseStore = defineStore('purchase', {
-  state: () => ({ purchaseId: 0 }),
+  state: (): { purchaseIds: number[] } => ({ purchaseIds: [] }),
   getters: {
-    getPurchaseId: state => state.purchaseId
+    getPurchaseIds: state => state.purchaseIds
   },
   actions: {
     setPurchaseId(arg: number) {
-      this.purchaseId = arg
+      this.purchaseIds.push(arg)
     }
   },
   persist: {

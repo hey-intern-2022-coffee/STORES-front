@@ -15,13 +15,16 @@ export type UserInfo = {
   /** メールアドレス */
   mail_address?: string | undefined
   /** 購入した商品 */
-  purchases_products?: (PurchasesProducts)[] | undefined
+  purchases_products?: PurchasesProducts[] | undefined
 }
 
 /** 商品IDを関連付ける */
 export type PurchasesProducts = {
+  id?: number | undefined
   /** 商品ID */
   product_id?: number | undefined
+
+  purchase_id?: number | undefined
 }
 
 /** 購入する */
@@ -33,14 +36,16 @@ export type Purchase = UserInfo & {
 }
 
 export type OnlineProducts = Products & {
-  online_stock?: {
-    /** 売れた商品の在庫 */
-    sold_quantity?: number | undefined
-    /** オンライン商品の在庫 */
-    stock_quantity?: number | undefined
-    /** オンライン商品の在庫 */
-    delivered_quantity?: number | undefined
-  } | undefined
+  online_stock?:
+    | {
+        /** 売れた商品の在庫 */
+        sold_quantity?: number | undefined
+        /** オンライン商品の在庫 */
+        stock_quantity?: number | undefined
+        /** オンライン商品の在庫 */
+        delivered_quantity?: number | undefined
+      }
+    | undefined
 }
 
 /** 登録された商品 */
